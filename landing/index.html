@@ -57,7 +57,7 @@ img{max-width:100%}
 
 /* ---- layout ---- */
 .wrap{max-width:1120px;margin:0 auto;padding-inline:20px}
-section{position:relative;padding-block:clamp(46px,7vw,92px)}
+section{position:relative;padding-block:clamp(34px,5vw,66px)}
 .eyebrow{font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--mint);
   display:inline-flex;align-items:center;gap:9px}
 .eyebrow::before{content:"";width:26px;height:1px;background:linear-gradient(90deg,var(--mint),transparent)}
@@ -145,7 +145,7 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.04;letter-spac
 @keyframes marq{to{transform:translateX(-50%)}}
 
 /* ---- problem / solution ---- */
-.duo{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:44px}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:24px}
 @media (max-width:760px){.duo{grid-template-columns:1fr}}
 .pane{background:var(--glass);border:1px solid var(--stroke);border-radius:var(--r);padding:28px;
   backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
@@ -160,7 +160,7 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.04;letter-spac
 .good li .ic{background:rgba(53,227,161,.16);color:var(--mint)}
 
 /* ---- demo showcase ---- */
-.showcase-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:52px;align-items:center;margin-top:40px}
+.showcase-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:44px;align-items:center;margin-top:24px}
 @media (max-width:900px){.showcase-grid{grid-template-columns:1fr;gap:36px}}
 .demo-picker{display:flex;flex-direction:column;gap:10px;margin-top:26px}
 .demo-chip{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:14px;cursor:pointer;
@@ -196,7 +196,7 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.04;letter-spac
 .demo-open{margin-top:20px;display:flex;justify-content:center}
 
 /* ---- services ---- */
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px}
 @media (max-width:900px){.svc-grid{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:560px){.svc-grid{grid-template-columns:1fr}}
 .svc{position:relative;background:var(--glass);border:1px solid var(--stroke);border-radius:var(--r);
@@ -213,7 +213,7 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.04;letter-spac
 .svc>*{position:relative;z-index:1}
 
 /* ---- process ---- */
-.steps{position:relative;margin-top:48px;padding-left:8px}
+.steps{position:relative;margin-top:26px;padding-left:8px}
 .steps .track{position:absolute;left:23px;top:8px;bottom:8px;width:2px;background:var(--stroke)}
 .steps .track .fill{position:absolute;top:0;left:0;width:100%;height:0;
   background:linear-gradient(180deg,var(--mint),var(--teal),var(--violet))}
@@ -227,7 +227,7 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.04;letter-spac
 .step .c p{color:var(--muted);font-size:14.5px;margin:0;max-width:52ch}
 
 /* ---- stats ---- */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:12px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:2px}
 @media (max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
 .stat{background:var(--glass);border:1px solid var(--stroke);border-radius:var(--r);padding:26px 22px;text-align:center;
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
@@ -236,7 +236,7 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.04;letter-spac
 .stat .l{color:var(--muted);font-size:13px;margin-top:6px}
 
 /* ---- faq ---- */
-.faq{max-width:760px;margin:40px auto 0}
+.faq{max-width:760px;margin:22px auto 0}
 details{border:1px solid var(--stroke);border-radius:14px;margin-bottom:12px;background:var(--glass);overflow:hidden}
 details[open]{border-color:var(--stroke-2);background:var(--glass-2)}
 summary{list-style:none;cursor:pointer;padding:20px 22px;font-weight:600;font-size:16px;display:flex;justify-content:space-between;align-items:center;gap:16px}
@@ -265,7 +265,6 @@ footer .honesty{font-size:12.5px;color:var(--faint);max-width:52ch}
 /* ---- reveal (JS-gated so no-JS shows everything) ---- */
 .js .reveal{opacity:0;transform:translateY(26px)}
 .js .reveal-c>*{opacity:0;transform:translateY(22px)}
-.js .hero .eyebrow,.js .hero .lede,.js .hero-cta,.js .hero .trustline,.js .hero .glasscard,.js #headline .word{opacity:0}
 
 @media (prefers-reduced-motion:reduce){
   .mesh,.floaty,.pulse,.marquee-track,.logo-mark .spark,.logo-mark .shine{animation:none!important}
@@ -348,7 +347,7 @@ footer .honesty{font-size:12.5px;color:var(--faint);max-width:52ch}
 <!-- PROBLEM / SOLUTION -->
 <section class="wrap">
   <span class="eyebrow reveal">The gap</span>
-  <h2 class="section-h reveal" style="margin-top:14px;max-width:16ch">Small, fixable problems cost real customers.</h2>
+  <h2 class="section-h reveal" style="margin-top:8px;max-width:16ch">Small, fixable problems cost real customers.</h2>
   <div class="duo">
     <div class="pane bad reveal">
       <h3>Where money leaks out</h3>
@@ -374,8 +373,8 @@ footer .honesty{font-size:12.5px;color:var(--faint);max-width:52ch}
 <!-- DEMO SHOWCASE -->
 <section class="wrap" id="work">
   <span class="eyebrow reveal">See it live</span>
-  <h2 class="section-h reveal" style="margin-top:14px;max-width:18ch">Real, working demos — running right here.</h2>
-  <p class="lede reveal" style="margin-top:14px">Every screen below is an actual live build (using sample businesses). Swipe through them, then open any one full-screen.</p>
+  <h2 class="section-h reveal" style="margin-top:8px;max-width:18ch">Real, working demos — running right here.</h2>
+  <p class="lede reveal" style="margin-top:8px">Every screen below is an actual live build (using sample businesses). Swipe through them, then open any one full-screen.</p>
 
   <div class="showcase-grid">
     <div class="reveal">
@@ -401,7 +400,7 @@ footer .honesty{font-size:12.5px;color:var(--faint);max-width:52ch}
 <!-- SERVICES -->
 <section class="wrap" id="services">
   <span class="eyebrow reveal">What we build</span>
-  <h2 class="section-h reveal" style="margin-top:14px">Pick what you need. Start small.</h2>
+  <h2 class="section-h reveal" style="margin-top:8px">Pick what you need. Start small.</h2>
   <div class="svc-grid reveal-c" id="svc"></div>
   <p class="lede reveal" style="margin-top:26px">Also: <b style="color:var(--ink)">business automation &amp; internal tools</b> — quoted honestly by complexity.</p>
 </section>
@@ -409,7 +408,7 @@ footer .honesty{font-size:12.5px;color:var(--faint);max-width:52ch}
 <!-- PROCESS -->
 <section class="wrap" id="process">
   <span class="eyebrow reveal">How it works</span>
-  <h2 class="section-h reveal" style="margin-top:14px">Four simple steps. No jargon.</h2>
+  <h2 class="section-h reveal" style="margin-top:8px">Four simple steps. No jargon.</h2>
   <div class="steps" id="steps">
     <div class="track"><div class="fill" id="stepfill"></div></div>
     <div class="step"><div class="n">1</div><div class="c"><h3>Free assessment</h3><p>Tell us about your business. We spot one clear opportunity — no charge, no pressure.</p></div></div>
@@ -432,7 +431,7 @@ footer .honesty{font-size:12.5px;color:var(--faint);max-width:52ch}
 <!-- FAQ -->
 <section class="wrap" id="faq">
   <span class="eyebrow reveal" style="display:block;text-align:center">Questions</span>
-  <h2 class="section-h reveal" style="margin-top:14px;text-align:center">Good things to ask.</h2>
+  <h2 class="section-h reveal" style="margin-top:8px;text-align:center">Good things to ask.</h2>
   <div class="faq reveal">
     <details><summary>How much does it cost?<span class="pm">+</span></summary><div class="a">Starter websites begin at ₦30,000, and most projects fall in the ranges shown under Services. We always confirm the price before any work starts — no surprises.</div></details>
     <details><summary>How long does it take?<span class="pm">+</span></summary><div class="a">Most projects are delivered in a few days once we have your content. You'll get a clear timeline in the quote.</div></details>
