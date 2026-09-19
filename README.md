@@ -62,5 +62,5 @@ Deploy `landing/` and `demos/` free on GitHub Pages or Netlify.
 
 This repo was previously an "email spoof spammer". That has nothing to do with —
 and directly contradicts — this legitimate, consent-based business. The old
-`main.py` spam script should be removed. See the launch notes / ask your
-operator before deleting if you want to keep the git history reference.
+`main.py` spam script has been removed. Consider renaming the repository itself
+away from `email-spoof-spammer` to match the real business.

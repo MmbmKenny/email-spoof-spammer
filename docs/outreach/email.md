@@ -21,7 +21,7 @@ Subject lines (pick one, keep it specific and low-key):
 > Either way, wishing you a great week.
 >
 > [Your name]
-> [YOUR_WHATSAPP] · [YOUR_EMAIL]
+> WhatsApp +234 707 976 4967 · adeeyokehinde591@gmail.com
 
 Use Gmail drafts (approval-first). Never bulk-blast. One real, personalized email
 at a time.
