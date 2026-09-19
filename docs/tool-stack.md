@@ -53,3 +53,18 @@ actually used it for their project and verified it works.**
 
 First revenue does not require spending anything. A custom domain is the first
 optional upgrade, and only once cash flow supports it.
+
+## Deployment & email infrastructure (added 2026-09-19)
+
+All free tier. See `docs/deployment.md`, `docs/email-setup.md`,
+`docs/outbound-email.md`, and `STATUS.md`.
+
+| Tool | Purpose | Cost | Notes |
+|------|---------|------|-------|
+| Cloudflare Pages | Live website hosting, HTTPS, custom domain, previews, rollback | Free | Build: `bash build.sh` → `public/`. 1 custom domain/project. |
+| Zoho Mail (Forever Free) | Professional mailboxes `hello@DOMAIN` (receiving + replies) | Free | 5 users, 5GB each, 1 domain, webmail-only, ~200 sends/day. |
+| Brevo (Free) | Authenticated outbound outreach (approved, throttled) | Free | 300 emails/day, shared IP, "Sent with Brevo" footer. |
+| Domain name | Custom domain for site + email | ~₦10,000–15,000/yr | **Optional**, only when funds allow. Everything works on free subdomains first. |
+
+**Still ₦0/month** until you choose to buy a domain. A domain is the single
+optional purchase, and only when cash flow supports it.

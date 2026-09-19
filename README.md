@@ -23,6 +23,11 @@ before any outreach is sent**.
 | `docs/sales-funnel.md` | CRM stage definitions |
 | `docs/tool-stack.md` | Every tool we use and what it costs (currently ₦0/mo) |
 | `docs/service-architecture.md` | How the pieces fit together |
+| `docs/deployment.md` | Deploy free on Cloudflare Pages (HTTPS, custom domain) |
+| `docs/email-setup.md` | Professional email `hello@DOMAIN` via Zoho (free) |
+| `docs/outbound-email.md` | Authenticated outreach via Brevo (free), approval-first |
+| `STATUS.md` | Honest verification status of all infrastructure |
+| `build.sh` | Assembles the deployable site into `public/` |
 
 ## Quick start
 
@@ -45,6 +50,9 @@ python3 sales/dashboard.py     # writes sales/sales-dashboard.html
 
 # 5. Follow the plan
 open docs/14-day-plan.md
+
+# 6. Preview the exact deployable site locally
+bash build.sh   # outputs ./public (index.html + demos)
 ```
 
 Deploy `landing/` and `demos/` free on GitHub Pages or Netlify.

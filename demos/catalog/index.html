@@ -28,6 +28,7 @@ grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px}
 padding:9px;border-radius:9px;font-weight:600;font-size:14px}
 .empty{text-align:center;color:var(--muted);padding:40px}
 footer{text-align:center;color:var(--muted);padding:24px;font-size:13px}
+.p .img{position:relative;overflow:hidden}.p .img .emoji{position:relative;z-index:1}.p .img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
 </style>
 </head>
 <body>
@@ -45,16 +46,16 @@ footer{text-align:center;color:var(--muted);padding:24px;font-size:13px}
 <script>
 const WHATSAPP="0000000000";
 const PRODUCTS=[
-  {n:"Wireless Earbuds",c:"Audio",p:12000,e:"🎧",feat:1},
-  {n:"Bluetooth Speaker",c:"Audio",p:18000,e:"🔊",feat:1},
-  {n:"Power Bank 20,000mAh",c:"Power",p:9500,e:"🔋",feat:1},
-  {n:"Fast Charger 30W",c:"Power",p:6000,e:"⚡"},
-  {n:"Phone Stand",c:"Accessories",p:3500,e:"📱"},
-  {n:"USB-C Cable (2m)",c:"Accessories",p:2500,e:"🔌"},
-  {n:"Smart Watch",c:"Wearables",p:25000,e:"⌚",feat:1},
-  {n:"Fitness Band",c:"Wearables",p:14000,e:"📿"},
-  {n:"Laptop Sleeve",c:"Accessories",p:7000,e:"💼"},
-  {n:"Webcam HD",c:"Accessories",p:16000,e:"📷"},
+  {n:"Wireless Earbuds",c:"Audio",p:12000,e:"🎧",feat:1,kw:"earbuds",lock:101},
+  {n:"Bluetooth Speaker",c:"Audio",p:18000,e:"🔊",feat:1,kw:"speaker",lock:102},
+  {n:"Power Bank 20,000mAh",c:"Power",p:9500,e:"🔋",feat:1,kw:"powerbank,battery",lock:103},
+  {n:"Fast Charger 30W",c:"Power",p:6000,e:"⚡",kw:"charger",lock:104},
+  {n:"Phone Stand",c:"Accessories",p:3500,e:"📱",kw:"smartphone,stand",lock:105},
+  {n:"USB-C Cable (2m)",c:"Accessories",p:2500,e:"🔌",kw:"cable,usb",lock:106},
+  {n:"Smart Watch",c:"Wearables",p:25000,e:"⌚",feat:1,kw:"smartwatch",lock:107},
+  {n:"Fitness Band",c:"Wearables",p:14000,e:"📿",kw:"fitness,tracker",lock:108},
+  {n:"Laptop Sleeve",c:"Accessories",p:7000,e:"💼",kw:"laptop,bag",lock:109},
+  {n:"Webcam HD",c:"Accessories",p:16000,e:"📷",kw:"webcam",lock:110},
 ];
 const cats=["All",...new Set(PRODUCTS.map(p=>p.c))];
 let activeCat="All";
@@ -75,7 +76,7 @@ function render(){
   const g=document.getElementById('grid');
   g.innerHTML=list.length?list.map(p=>{
     const msg=encodeURIComponent(`Hi Lumo Store, I'd like to order: ${p.n} — ${fmt(p.p)}`);
-    return `<div class="p"><div class="img">${p.e}</div><div class="b">
+    return `<div class="p"><div class="img"><span class="emoji">${p.e}</span><img loading="lazy" alt="${p.n}" src="https://loremflickr.com/400/400/${p.kw}?lock=${p.lock}" onerror="this.remove()"></div><div class="b">
       <h3>${p.n}</h3><small>${p.c}</small><div class="price">${fmt(p.p)}</div>
       <a class="order" target="_blank" href="https://wa.me/${WHATSAPP}?text=${msg}">Order on WhatsApp</a>
       </div></div>`;}).join(''):'<div class="empty">No products match your search.</div>';
