@@ -2,84 +2,138 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Cedar & Stone Hotel (DEMO)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap">
 <style>
-:root{--bg:#f7f9fa;--ink:#1f2a33;--muted:#6b7a86;--brand:#12586b;--gold:#c9a24b;--line:#e3ebef}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
-font:16px/1.6 system-ui,Segoe UI,Roboto,sans-serif}
-.flag{background:#1f2a33;color:#fff;text-align:center;padding:6px;font-size:13px}
-nav{display:flex;justify-content:space-between;align-items:center;padding:16px 22px;
-position:sticky;top:0;background:rgba(247,249,250,.95);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
-nav b{color:var(--brand);font-size:18px;letter-spacing:.03em}
-nav a{color:var(--ink);text-decoration:none;margin-left:18px;font-size:14px}
-.hero{height:64vh;min-height:380px;display:flex;flex-direction:column;justify-content:center;align-items:center;
-text-align:center;color:#fff;padding:20px;background:linear-gradient(rgba(18,88,107,.55),rgba(31,42,51,.75)),
-repeating-linear-gradient(120deg,#12586b,#12586b 40px,#0f4a5a 40px,#0f4a5a 80px)}
-.hero h1{font-size:44px;margin:0 0 10px;font-weight:800}
-.hero p{font-size:18px;max-width:560px;opacity:.95}
-.gold{color:var(--gold)}
-.btn{display:inline-block;background:var(--gold);color:#1f2a33;padding:13px 28px;border-radius:8px;
-text-decoration:none;font-weight:700;margin-top:18px}
-.btn.wa{background:#25d366;color:#fff}
-.sec{max-width:1000px;margin:0 auto;padding:56px 20px}
-.sec h2{text-align:center;color:var(--brand);font-size:30px;margin-bottom:6px}
-.sub{text-align:center;color:var(--muted);margin-bottom:30px}
-.rooms{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
-.room{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}
-.room .img{height:150px;background:linear-gradient(135deg,var(--brand),#0d3f4d)}
-.room .b{padding:18px}.room h3{margin:0 0 4px}.room .price{color:var(--brand);font-weight:800;font-size:20px}
-.room ul{padding-left:18px;color:var(--muted);font-size:14px;margin:10px 0}
-.amen{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
-.amen span{background:#fff;border:1px solid var(--line);border-radius:30px;padding:8px 16px;font-size:14px}
-footer{background:#1f2a33;color:#b9c6ce;text-align:center;padding:34px 20px;font-size:14px}
-.room .img{overflow:hidden}.room .img img{width:100%;height:100%;object-fit:cover;display:block}
+:root{--bg:#07110f;--ink:#eaf3f0;--muted:#a9c0ba;--faint:#728a84;--teal:#1ab6b0;--gold:#d8b25a;
+  --glass:rgba(255,255,255,.05);--stroke:rgba(255,255,255,.12);--r:18px;
+  --display:"Fraunces",Georgia,serif;--body:"Manrope",system-ui,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
+.demoflag{position:fixed;top:0;left:0;right:0;z-index:60;text-align:center;font-size:12px;font-weight:700;
+  letter-spacing:.04em;padding:7px;color:#06120f;background:linear-gradient(90deg,var(--teal),#57d6cf);
+  padding-top:calc(7px + env(safe-area-inset-top,0px))}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.06;margin:0;text-wrap:balance}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s}.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+nav{position:fixed;top:32px;left:0;right:0;z-index:50;transition:.3s}
+nav.s{background:rgba(7,17,15,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--stroke)}
+nav .row{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;max-width:1080px;margin:0 auto}
+nav .logo{font-family:var(--display);font-size:20px;letter-spacing:.02em;display:flex;align-items:center;gap:8px}
+nav .logo b{color:var(--gold)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-weight:700;font-size:14px;cursor:pointer;border:1px solid transparent}
+.btn-p{background:var(--gold);color:#1c1508;box-shadow:0 12px 30px -10px rgba(216,178,90,.5)}
+.btn-g{border-color:var(--stroke);background:var(--glass);color:var(--ink);backdrop-filter:blur(8px)}
+.btn-wa{background:#25d366;color:#04140b}
+.hero{position:relative;min-height:90vh;display:flex;align-items:center;text-align:center;padding:80px 0}
+.hero .bg{position:absolute;inset:0;z-index:0;background:linear-gradient(135deg,#0c3b38,#07110f)}
+.hero .bg img{width:100%;height:100%;object-fit:cover;opacity:.5}
+.hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(7,17,15,.55),rgba(7,17,15,.35) 45%,var(--bg))}
+.hero .in-wrap{position:relative;z-index:2;margin:0 auto}
+.hero h1{font-size:clamp(42px,8.5vw,82px);letter-spacing:-.02em;margin:14px 0}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero p{color:var(--muted);font-size:clamp(16px,2.4vw,20px);max-width:44ch;margin:0 auto 26px}
+.hero .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+section{padding:clamp(48px,8vw,90px) 0}
+.sec-h{text-align:center;margin-bottom:14px}.sec-h h2{font-size:clamp(28px,5vw,44px);margin-top:8px}
+.sub{text-align:center;color:var(--muted);margin-bottom:36px}
+.rooms{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
+.room{background:var(--glass);border:1px solid var(--stroke);border-radius:var(--r);overflow:hidden;transition:transform .35s,border-color .35s}
+.room:hover{transform:translateY(-5px);border-color:rgba(216,178,90,.5)}
+.room .img{aspect-ratio:16/10;background:linear-gradient(135deg,var(--teal),#062421);overflow:hidden}
+.room .img img{width:100%;height:100%;object-fit:cover}
+.room .b{padding:20px}
+.room h3{font-size:21px;margin-bottom:6px}
+.room .price{font-family:var(--display);color:var(--gold);font-size:22px;font-weight:600}
+.room .price small{color:var(--faint);font-family:var(--body);font-size:13px;font-weight:400}
+.room ul{list-style:none;padding:0;margin:12px 0 16px;color:var(--muted);font-size:14px;display:flex;flex-wrap:wrap;gap:8px 16px}
+.room ul li::before{content:"✓ ";color:var(--teal)}
+.amen{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.amen span{background:var(--glass);border:1px solid var(--stroke);border-radius:100px;padding:10px 18px;font-size:14px}
+.book{text-align:center;background:linear-gradient(160deg,rgba(26,182,176,.12),var(--glass));
+  border:1px solid var(--stroke);border-radius:26px;padding:clamp(40px,7vw,70px) 24px}
+.book h2{font-size:clamp(28px,5vw,46px);margin-bottom:10px}
+.book p{color:var(--muted);max-width:44ch;margin:0 auto 26px}
+footer{border-top:1px solid var(--stroke);padding:34px 0;text-align:center;color:var(--faint);font-size:14px}
+footer b{color:var(--gold)}
 </style>
 </head>
 <body>
-<div class="flag">DEMO — fictional hotel, for demonstration only</div>
-<nav><b>CEDAR &amp; STONE</b><div><a href="#rooms">Rooms</a><a href="#amenities">Amenities</a><a href="#book">Book</a></div></nav>
+<div class="demoflag">✦ DEMO SITE — “Cedar &amp; Stone” is a fictional business, built to show what Brightfront delivers</div>
 
-<div class="hero">
-  <h1>Rest well in <span class="gold">the heart of the city</span></h1>
-  <p>Boutique comfort, warm service, and everything you need a tap away.</p>
-  <a class="btn" href="#book">Check availability</a>
-</div>
+<nav id="nav"><div class="row">
+  <span class="logo"><b>❖</b> CEDAR &amp; STONE</span>
+  <a class="btn btn-p" href="#book">Book now</a>
+</div></nav>
 
-<div class="sec" id="rooms">
-  <h2>Our Rooms</h2>
-  <div class="sub">Every stay includes breakfast and fast Wi-Fi.</div>
+<header class="hero">
+  <div class="bg"><img loading="eager" alt="Hotel room" src="https://loremflickr.com/1280/900/hotel,luxury,room?lock=8"></div>
+  <div class="wrap in-wrap reveal in">
+    <div class="eyebrow">Boutique Hotel · Abuja</div>
+    <h1>Rest well, in the<br><em>heart of the city.</em></h1>
+    <p>Warm rooms, quiet nights, and everything you need one tap away.</p>
+    <div class="cta">
+      <a class="btn btn-p" href="#rooms">View rooms</a>
+      <a class="btn btn-g" href="#book">Check availability</a>
+    </div>
+  </div>
+</header>
+
+<section id="rooms"><div class="wrap">
+  <div class="sec-h reveal"><div class="eyebrow">Stay</div><h2>Our rooms</h2></div>
+  <div class="sub reveal">Every stay includes breakfast and fast Wi-Fi.</div>
   <div class="rooms">
-    <div class="room"><div class="img"><img loading="lazy" alt="Classic queen room" src="https://loremflickr.com/600/400/hotel,room?lock=61" onerror="this.remove()"></div><div class="b"><h3>Classic Queen</h3>
-      <div class="price">₦35,000<small style="color:var(--muted);font-weight:400"> /night</small></div>
+    <div class="room reveal"><div class="img"><img loading="lazy" alt="Classic Queen room" src="https://loremflickr.com/700/440/hotel,room,bed?lock=12" onerror="this.remove()"></div>
+      <div class="b"><h3>Classic Queen</h3><div class="price">₦35,000 <small>/night</small></div>
       <ul><li>Queen bed</li><li>City view</li><li>Work desk</li></ul>
-      <a class="btn wa" href="https://wa.me/0000000000?text=Hi%2C%20I'd%20like%20to%20book%20a%20Classic%20Queen" target="_blank">Book</a></div></div>
-    <div class="room"><div class="img"><img loading="lazy" alt="Deluxe king room" src="https://loremflickr.com/600/400/hotel,bedroom?lock=72" onerror="this.remove()"></div><div class="b"><h3>Deluxe King</h3>
-      <div class="price">₦52,000<small style="color:var(--muted);font-weight:400"> /night</small></div>
+      <a class="btn btn-wa" href="https://wa.me/0000000000?text=Hi%2C%20I'd%20like%20to%20book%20a%20Classic%20Queen" target="_blank" rel="noopener">Book this room</a></div></div>
+    <div class="room reveal"><div class="img"><img loading="lazy" alt="Deluxe King room" src="https://loremflickr.com/700/440/hotel,suite,bedroom?lock=22" onerror="this.remove()"></div>
+      <div class="b"><h3>Deluxe King</h3><div class="price">₦52,000 <small>/night</small></div>
       <ul><li>King bed</li><li>Lounge area</li><li>Rain shower</li></ul>
-      <a class="btn wa" href="https://wa.me/0000000000?text=Hi%2C%20I'd%20like%20to%20book%20a%20Deluxe%20King" target="_blank">Book</a></div></div>
-    <div class="room"><div class="img"><img loading="lazy" alt="Executive suite" src="https://loremflickr.com/600/400/hotel,suite?lock=83" onerror="this.remove()"></div><div class="b"><h3>Executive Suite</h3>
-      <div class="price">₦85,000<small style="color:var(--muted);font-weight:400"> /night</small></div>
-      <ul><li>Separate living room</li><li>Kitchenette</li><li>Premium view</li></ul>
-      <a class="btn wa" href="https://wa.me/0000000000?text=Hi%2C%20I'd%20like%20to%20book%20an%20Executive%20Suite" target="_blank">Book</a></div></div>
+      <a class="btn btn-wa" href="https://wa.me/0000000000?text=Hi%2C%20I'd%20like%20to%20book%20a%20Deluxe%20King" target="_blank" rel="noopener">Book this room</a></div></div>
+    <div class="room reveal"><div class="img"><img loading="lazy" alt="Executive Suite" src="https://loremflickr.com/700/440/hotel,suite,luxury?lock=32" onerror="this.remove()"></div>
+      <div class="b"><h3>Executive Suite</h3><div class="price">₦85,000 <small>/night</small></div>
+      <ul><li>Living room</li><li>Kitchenette</li><li>Premium view</li></ul>
+      <a class="btn btn-wa" href="https://wa.me/0000000000?text=Hi%2C%20I'd%20like%20to%20book%20an%20Executive%20Suite" target="_blank" rel="noopener">Book this room</a></div></div>
   </div>
-</div>
+</div></section>
 
-<div class="sec" id="amenities" style="background:#fff;border-radius:20px">
-  <h2>Amenities</h2><div class="sub">Everything for a comfortable stay.</div>
-  <div class="amen">
-    <span>🍳 Free breakfast</span><span>📶 Fast Wi-Fi</span><span>🅿️ Parking</span>
-    <span>❄️ A/C</span><span>🧺 Laundry</span><span>🏋️ Gym</span><span>🛎️ 24/7 front desk</span><span>🔌 Backup power</span>
+<section><div class="wrap">
+  <div class="sec-h reveal"><div class="eyebrow">Comfort</div><h2>Amenities</h2></div>
+  <div class="sub reveal">Everything for a comfortable stay.</div>
+  <div class="amen reveal">
+    <span>🍳 Free breakfast</span><span>📶 Fast Wi-Fi</span><span>🅿️ Parking</span><span>❄️ A/C</span>
+    <span>🧺 Laundry</span><span>🏋️ Gym</span><span>🛎️ 24/7 front desk</span><span>🔌 Backup power</span>
   </div>
-</div>
+</div></section>
 
-<div class="sec" id="book" style="text-align:center">
-  <h2>Book Your Stay</h2>
-  <div class="sub">Reserve directly — no third-party fees. Message us and we'll confirm within minutes.</div>
-  <a class="btn wa" href="https://wa.me/0000000000?text=Hi%20Cedar%20%26%20Stone%2C%20I'd%20like%20to%20check%20availability" target="_blank">💬 Book on WhatsApp</a>
-</div>
+<section id="book"><div class="wrap">
+  <div class="book reveal">
+    <div class="eyebrow">Reserve</div>
+    <h2>Book your stay</h2>
+    <p>Reserve directly — no third-party fees. Message us and we confirm within minutes.</p>
+    <a class="btn btn-wa" href="https://wa.me/0000000000?text=Hi%20Cedar%20%26%20Stone%2C%20I'd%20like%20to%20check%20availability" target="_blank" rel="noopener">💬 Book on WhatsApp</a>
+  </div>
+</div></section>
 
-<footer>Cedar &amp; Stone Hotel · 8 Ring Road, Abuja · +234 000 000 0000<br>
-<small>DEMO website built by the agency</small></footer>
+<footer>
+  <p><b>❖ Cedar &amp; Stone Hotel</b> · 8 Ring Road, Abuja · +234 000 000 0000</p>
+  <p style="margin-top:6px">DEMO website by Brightfront — <a href="../index.html" style="color:var(--gold)">see more work</a></p>
+</footer>
+
+<script>
+(function(){
+  var nav=document.getElementById('nav');
+  addEventListener('scroll',function(){nav.classList.toggle('s',scrollY>40)},{passive:true});
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+})();
+</script>
 </body>
 </html>

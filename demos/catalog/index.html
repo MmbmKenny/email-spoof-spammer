@@ -2,84 +2,109 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Lumo Store — Product Catalog (DEMO)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lumo Store — Catalog (DEMO)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap">
 <style>
-:root{--bg:#fbfbfd;--ink:#1a1a2e;--muted:#7a7a8c;--brand:#6c3fd1;--line:#ececf5}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
-font:15px/1.5 system-ui,Segoe UI,Roboto,sans-serif}
-.flag{background:#1a1a2e;color:#fff;text-align:center;padding:6px;font-size:13px}
-header{padding:20px;text-align:center;background:#fff;border-bottom:1px solid var(--line)}
-header h1{margin:0;color:var(--brand)}header p{margin:4px 0 0;color:var(--muted);font-size:14px}
-.controls{max-width:1000px;margin:16px auto;padding:0 16px;display:flex;gap:10px;flex-wrap:wrap}
-input,select{padding:10px;border:1px solid var(--line);border-radius:10px;font:inherit;background:#fff}
-#q{flex:1;min-width:180px}
-.chips{max-width:1000px;margin:0 auto;padding:0 16px 8px;display:flex;gap:8px;flex-wrap:wrap}
-.chip{padding:6px 14px;border:1px solid var(--line);border-radius:20px;background:#fff;cursor:pointer;font-size:13px}
-.chip.on{background:var(--brand);color:#fff;border-color:var(--brand)}
-.grid{max-width:1000px;margin:0 auto;padding:16px;display:grid;
-grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px}
-.p{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
-.p .img{height:140px;background:linear-gradient(135deg,#b79cf0,#6c3fd1);display:flex;align-items:center;justify-content:center;font-size:40px}
-.p .b{padding:12px;display:flex;flex-direction:column;gap:6px;flex:1}
-.p h3{margin:0;font-size:15px}.p .price{color:var(--brand);font-weight:800}
-.p small{color:var(--muted)}
-.order{margin-top:auto;background:#25d366;color:#fff;text-align:center;text-decoration:none;
-padding:9px;border-radius:9px;font-weight:600;font-size:14px}
-.empty{text-align:center;color:var(--muted);padding:40px}
-footer{text-align:center;color:var(--muted);padding:24px;font-size:13px}
-.p .img{position:relative;overflow:hidden}.p .img .emoji{position:relative;z-index:1}.p .img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
+:root{--bg:#0a0812;--ink:#efeafb;--muted:#a99fc4;--faint:#726a8c;--violet:#8b6cf0;--pink:#e463c8;
+  --glass:rgba(255,255,255,.05);--stroke:rgba(255,255,255,.12);--r:16px;
+  --display:"Fraunces",Georgia,serif;--body:"Manrope",system-ui,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.55;overflow-x:hidden}
+img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
+.demoflag{position:fixed;top:0;left:0;right:0;z-index:60;text-align:center;font-size:12px;font-weight:700;
+  letter-spacing:.04em;padding:7px;color:#120b1a;background:linear-gradient(90deg,var(--violet),var(--pink));
+  padding-top:calc(7px + env(safe-area-inset-top,0px))}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+header.top{padding:calc(56px + env(safe-area-inset-top,0px)) 0 8px;text-align:center;
+  background:radial-gradient(60% 90% at 50% 0%,rgba(139,108,240,.22),transparent 70%)}
+header.top .eyebrow{font-size:12px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--violet)}
+header.top h1{font-family:var(--display);font-size:clamp(30px,7vw,52px);margin:10px 0 6px}
+header.top p{color:var(--muted);margin:0}
+.controls{position:sticky;top:calc(env(safe-area-inset-top,0px));z-index:20;padding:14px 0;
+  background:rgba(10,8,18,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);margin-top:18px}
+.controls .row{display:flex;gap:10px;flex-wrap:wrap}
+input,select{padding:12px 14px;border:1px solid var(--stroke);border-radius:12px;font:inherit;background:var(--glass);color:var(--ink)}
+input::placeholder{color:var(--faint)}#q{flex:1;min-width:180px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.chip{padding:8px 15px;border:1px solid var(--stroke);border-radius:100px;background:var(--glass);cursor:pointer;font-size:13px;color:var(--muted)}
+.chip.on{background:linear-gradient(135deg,var(--violet),var(--pink));color:#fff;border-color:transparent}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:16px;padding:20px 0 40px}
+.p{background:var(--glass);border:1px solid var(--stroke);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:transform .3s,border-color .3s}
+.p:hover{transform:translateY(-4px);border-color:rgba(139,108,240,.55)}
+.p .img{aspect-ratio:1;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--violet),#1a1030)}
+.p .img .ph{position:absolute;inset:0;display:grid;place-items:center;font-size:34px;opacity:.5}
+.p .img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.p .b{padding:13px;display:flex;flex-direction:column;gap:5px;flex:1}
+.p h3{font-size:14.5px;margin:0}.p small{color:var(--faint);font-size:12px}
+.p .price{font-family:var(--display);color:var(--violet);font-weight:600;font-size:17px}
+.p .order{margin-top:auto;background:#25d366;color:#04140b;text-align:center;padding:9px;border-radius:10px;font-weight:700;font-size:13px}
+.empty{text-align:center;color:var(--faint);padding:50px}
+footer{border-top:1px solid var(--stroke);padding:30px 0;text-align:center;color:var(--faint);font-size:13px}
+footer b{color:var(--violet)}
 </style>
 </head>
 <body>
-<div class="flag">DEMO — fictional store, for demonstration only</div>
-<header><h1>Lumo Store</h1><p>Gadgets & accessories · Browse, then order on WhatsApp</p></header>
+<div class="demoflag">✦ DEMO STORE — “Lumo” is a fictional business, built to show what Brightfront delivers</div>
 
-<div class="controls">
-  <input id="q" placeholder="Search products...">
-  <select id="sort"><option value="feat">Featured</option><option value="low">Price: low → high</option><option value="high">Price: high → low</option></select>
-</div>
-<div class="chips" id="chips"></div>
-<div class="grid" id="grid"></div>
-<footer>DEMO catalog built by the agency · Customers browse everything and order in one tap.</footer>
+<header class="top"><div class="wrap">
+  <div class="eyebrow">Gadgets &amp; Accessories</div>
+  <h1>Lumo Store</h1>
+  <p>Browse everything, then order on WhatsApp in one tap.</p>
+</div></header>
+
+<div class="controls"><div class="wrap">
+  <div class="row">
+    <input id="q" placeholder="Search products…">
+    <select id="sort"><option value="feat">Featured</option><option value="low">Price: low → high</option><option value="high">Price: high → low</option></select>
+  </div>
+  <div class="chips" id="chips"></div>
+</div></div>
+
+<div class="wrap"><div class="grid" id="grid"></div></div>
+
+<footer><div class="wrap">
+  <p><b>Lumo Store</b> — browse &amp; order on WhatsApp.</p>
+  <p style="margin-top:6px">DEMO catalog by Brightfront — <a href="../index.html" style="color:var(--violet)">see more work</a></p>
+</div></footer>
 
 <script>
-const WHATSAPP="0000000000";
-const PRODUCTS=[
-  {n:"Wireless Earbuds",c:"Audio",p:12000,e:"🎧",feat:1,kw:"earbuds",lock:101},
-  {n:"Bluetooth Speaker",c:"Audio",p:18000,e:"🔊",feat:1,kw:"speaker",lock:102},
-  {n:"Power Bank 20,000mAh",c:"Power",p:9500,e:"🔋",feat:1,kw:"powerbank,battery",lock:103},
-  {n:"Fast Charger 30W",c:"Power",p:6000,e:"⚡",kw:"charger",lock:104},
-  {n:"Phone Stand",c:"Accessories",p:3500,e:"📱",kw:"smartphone,stand",lock:105},
-  {n:"USB-C Cable (2m)",c:"Accessories",p:2500,e:"🔌",kw:"cable,usb",lock:106},
-  {n:"Smart Watch",c:"Wearables",p:25000,e:"⌚",feat:1,kw:"smartwatch",lock:107},
-  {n:"Fitness Band",c:"Wearables",p:14000,e:"📿",kw:"fitness,tracker",lock:108},
-  {n:"Laptop Sleeve",c:"Accessories",p:7000,e:"💼",kw:"laptop,bag",lock:109},
-  {n:"Webcam HD",c:"Accessories",p:16000,e:"📷",kw:"webcam",lock:110},
+var WA="0000000000";
+var P=[
+ {n:"Wireless Earbuds",c:"Audio",p:12000,e:"🎧",kw:"earbuds",l:101,feat:1},
+ {n:"Bluetooth Speaker",c:"Audio",p:18000,e:"🔊",kw:"speaker",l:102,feat:1},
+ {n:"Power Bank 20,000mAh",c:"Power",p:9500,e:"🔋",kw:"powerbank,battery",l:103,feat:1},
+ {n:"Fast Charger 30W",c:"Power",p:6000,e:"⚡",kw:"charger,adapter",l:104},
+ {n:"Phone Stand",c:"Accessories",p:3500,e:"📱",kw:"phone,stand",l:105},
+ {n:"USB-C Cable (2m)",c:"Accessories",p:2500,e:"🔌",kw:"usb,cable",l:106},
+ {n:"Smart Watch",c:"Wearables",p:25000,e:"⌚",kw:"smartwatch",l:107,feat:1},
+ {n:"Fitness Band",c:"Wearables",p:14000,e:"📿",kw:"fitness,tracker",l:108},
+ {n:"Laptop Sleeve",c:"Accessories",p:7000,e:"💼",kw:"laptop,bag",l:109},
+ {n:"Webcam HD",c:"Accessories",p:16000,e:"📷",kw:"webcam,camera",l:110}
 ];
-const cats=["All",...new Set(PRODUCTS.map(p=>p.c))];
-let activeCat="All";
-const chips=document.getElementById('chips');
-cats.forEach(c=>{const b=document.createElement('div');b.className='chip'+(c==='All'?' on':'');
-  b.textContent=c;b.onclick=()=>{activeCat=c;[...chips.children].forEach(x=>x.classList.remove('on'));b.classList.add('on');render();};
-  chips.appendChild(b);});
+var cats=["All"].concat(P.map(function(x){return x.c}).filter(function(v,i,a){return a.indexOf(v)===i}));
+var active="All",chips=document.getElementById('chips');
+cats.forEach(function(c){var b=document.createElement('div');b.className='chip'+(c==='All'?' on':'');b.textContent=c;
+ b.onclick=function(){active=c;[].forEach.call(chips.children,function(x){x.classList.remove('on')});b.classList.add('on');render()};chips.appendChild(b)});
 document.getElementById('q').addEventListener('input',render);
 document.getElementById('sort').addEventListener('change',render);
-function fmt(n){return '₦'+n.toLocaleString();}
+function fmt(n){return '₦'+n.toLocaleString()}
 function render(){
-  const q=document.getElementById('q').value.toLowerCase();
-  const sort=document.getElementById('sort').value;
-  let list=PRODUCTS.filter(p=>(activeCat==='All'||p.c===activeCat)&&p.n.toLowerCase().includes(q));
-  if(sort==='low')list.sort((a,b)=>a.p-b.p);
-  if(sort==='high')list.sort((a,b)=>b.p-a.p);
-  if(sort==='feat')list.sort((a,b)=>(b.feat||0)-(a.feat||0));
-  const g=document.getElementById('grid');
-  g.innerHTML=list.length?list.map(p=>{
-    const msg=encodeURIComponent(`Hi Lumo Store, I'd like to order: ${p.n} — ${fmt(p.p)}`);
-    return `<div class="p"><div class="img"><span class="emoji">${p.e}</span><img loading="lazy" alt="${p.n}" src="https://loremflickr.com/400/400/${p.kw}?lock=${p.lock}" onerror="this.remove()"></div><div class="b">
-      <h3>${p.n}</h3><small>${p.c}</small><div class="price">${fmt(p.p)}</div>
-      <a class="order" target="_blank" href="https://wa.me/${WHATSAPP}?text=${msg}">Order on WhatsApp</a>
-      </div></div>`;}).join(''):'<div class="empty">No products match your search.</div>';
+ var q=document.getElementById('q').value.toLowerCase(),sort=document.getElementById('sort').value;
+ var list=P.filter(function(p){return (active==='All'||p.c===active)&&p.n.toLowerCase().indexOf(q)>-1});
+ if(sort==='low')list.sort(function(a,b){return a.p-b.p});
+ if(sort==='high')list.sort(function(a,b){return b.p-a.p});
+ if(sort==='feat')list.sort(function(a,b){return (b.feat||0)-(a.feat||0)});
+ var g=document.getElementById('grid');
+ g.innerHTML=list.length?list.map(function(p){
+   var msg=encodeURIComponent("Hi Lumo Store, I'd like to order: "+p.n+" — "+fmt(p.p));
+   return '<div class="p"><div class="img"><span class="ph">'+p.e+'</span>'
+     +'<img loading="lazy" alt="'+p.n+'" src="https://loremflickr.com/400/400/'+p.kw+'?lock='+p.l+'" onerror="this.remove()"></div>'
+     +'<div class="b"><h3>'+p.n+'</h3><small>'+p.c+'</small><div class="price">'+fmt(p.p)+'</div>'
+     +'<a class="order" target="_blank" rel="noopener" href="https://wa.me/'+WA+'?text='+msg+'">Order on WhatsApp</a></div></div>';
+ }).join(''):'<div class="empty">No products match your search.</div>';
 }
 render();
 </script>

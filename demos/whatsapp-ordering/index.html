@@ -2,127 +2,115 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Mama's Kitchen — WhatsApp Ordering (DEMO)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mama's Kitchen — Ordering (DEMO)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap">
 <style>
-:root{--bg:#faf7f2;--card:#fff;--ink:#22252b;--muted:#77808c;--brand:#e8562a;
---brand-d:#c8431d;--wa:#25d366;--line:#eee2d6}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
-font:16px/1.55 system-ui,Segoe UI,Roboto,sans-serif}
-.demo-flag{background:#22252b;color:#fff;text-align:center;padding:6px;font-size:13px}
-header{background:var(--brand);color:#fff;padding:22px 16px;text-align:center}
-header h1{margin:0;font-size:22px}header p{margin:4px 0 0;opacity:.9;font-size:14px}
-.wrap{max-width:640px;margin:0 auto;padding:16px}
-.cat{font-weight:700;margin:18px 0 8px;font-size:14px;text-transform:uppercase;
-letter-spacing:.05em;color:var(--muted)}
-.item{background:var(--card);border:1px solid var(--line);border-radius:14px;
-padding:14px;display:flex;justify-content:space-between;align-items:center;margin:10px 0}
-.item h3{margin:0;font-size:16px}.item p{margin:2px 0 0;color:var(--muted);font-size:13px}
-.price{font-weight:700;color:var(--brand);white-space:nowrap;margin-left:12px}
-.qty{display:flex;align-items:center;gap:10px;margin-top:8px}
-.qty button{width:30px;height:30px;border:1px solid var(--line);background:#fff;
-border-radius:8px;font-size:18px;cursor:pointer}
-.qty span{min-width:20px;text-align:center;font-weight:600}
-.cart{position:sticky;bottom:0;background:var(--card);border-top:1px solid var(--line);
-padding:14px 16px;box-shadow:0 -6px 20px rgba(0,0,0,.06)}
-.cart .total{display:flex;justify-content:space-between;font-weight:700;margin-bottom:10px}
-label{display:block;font-size:13px;color:var(--muted);margin:8px 0 3px}
-input,textarea{width:100%;padding:10px;border:1px solid var(--line);border-radius:10px;
-font:inherit;background:#fff;color:var(--ink)}
-.send{width:100%;background:var(--wa);color:#fff;border:0;padding:14px;border-radius:12px;
-font-size:16px;font-weight:700;cursor:pointer;margin-top:12px}
-.send:disabled{background:#bcd9c6;cursor:not-allowed}
-.note{font-size:12px;color:var(--muted);text-align:center;margin-top:8px}
-footer{text-align:center;padding:24px;color:var(--muted);font-size:13px}
+:root{--bg:#0d0f0a;--ink:#eef4e6;--muted:#b9c3a9;--faint:#7f8a6f;--green:#4caf50;--lime:#8bc34a;--wa:#25d366;
+  --glass:rgba(255,255,255,.05);--stroke:rgba(255,255,255,.12);--r:16px;
+  --display:"Fraunces",Georgia,serif;--body:"Manrope",system-ui,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.5;overflow-x:hidden}
+img{max-width:100%;display:block}a{color:inherit}
+.demoflag{position:fixed;top:0;left:0;right:0;z-index:60;text-align:center;font-size:12px;font-weight:700;
+  letter-spacing:.04em;padding:7px;color:#0c1207;background:linear-gradient(90deg,var(--lime),#c5e17a);
+  padding-top:calc(7px + env(safe-area-inset-top,0px))}
+.wrap{max-width:620px;margin:0 auto;padding:0 16px}
+header.top{padding:calc(52px + env(safe-area-inset-top,0px)) 0 22px;text-align:center;
+  background:radial-gradient(70% 90% at 50% 0%,rgba(139,195,74,.20),transparent 70%)}
+header.top .badge{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--lime);font-weight:700}
+header.top h1{font-family:var(--display);font-size:clamp(28px,7vw,42px);margin:8px 0 4px}
+header.top p{color:var(--muted);margin:0;font-size:14px}
+.cat{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--faint);margin:22px 0 10px}
+.item{background:var(--glass);border:1px solid var(--stroke);border-radius:var(--r);padding:12px;display:flex;gap:13px;align-items:center;margin-bottom:10px}
+.item .thumb{width:64px;height:64px;border-radius:12px;flex:none;overflow:hidden;position:relative;background:linear-gradient(135deg,var(--green),#20300f)}
+.item .thumb .ph{position:absolute;inset:0;display:grid;place-items:center;font-size:26px;opacity:.6}
+.item .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.item .info{flex:1;min-width:0}
+.item h3{margin:0;font-size:15.5px}.item p{margin:2px 0 0;color:var(--faint);font-size:12.5px}
+.item .price{color:var(--lime);font-weight:700;font-size:14px;margin-top:3px}
+.qty{display:flex;align-items:center;gap:10px}
+.qty button{width:30px;height:30px;border:1px solid var(--stroke);background:var(--glass);color:var(--ink);border-radius:9px;font-size:17px;cursor:pointer}
+.qty span{min-width:18px;text-align:center;font-weight:700}
+.cart{position:sticky;bottom:0;background:rgba(13,15,10,.94);backdrop-filter:blur(12px);border-top:1px solid var(--stroke);
+  padding:14px 16px;padding-bottom:calc(14px + env(safe-area-inset-bottom,0px));margin-top:14px}
+.cart .total{display:flex;justify-content:space-between;font-weight:800;margin-bottom:10px;font-size:17px}
+.cart .total b{font-family:var(--display);color:var(--lime)}
+label{display:block;font-size:12px;color:var(--faint);margin:8px 0 3px}
+input,textarea{width:100%;padding:11px;border:1px solid var(--stroke);border-radius:11px;font:inherit;background:var(--glass);color:var(--ink)}
+.send{width:100%;background:var(--wa);color:#04140b;border:0;padding:14px;border-radius:12px;font-size:16px;font-weight:800;cursor:pointer;margin-top:12px}
+.send:disabled{opacity:.5;cursor:not-allowed}
+.note{font-size:11.5px;color:var(--faint);text-align:center;margin-top:8px}
+footer{text-align:center;padding:22px;color:var(--faint);font-size:13px}
+footer b{color:var(--lime)}
 </style>
 </head>
 <body>
-<div class="demo-flag">DEMO — fictional business, for demonstration only</div>
-<header>
-  <h1>🍲 Mama's Kitchen</h1>
-  <p>Home-style meals · Lagos · Order on WhatsApp</p>
-</header>
+<div class="demoflag">✦ DEMO — “Mama's Kitchen” is a fictional business, built to show what Brightfront delivers</div>
+
+<header class="top"><div class="wrap">
+  <div class="badge">Order on WhatsApp</div>
+  <h1>Mama's Kitchen</h1>
+  <p>Home-style meals · Lagos</p>
+</div></header>
+
 <div class="wrap" id="menu"></div>
 
 <div class="cart">
-  <div class="total"><span>Total</span><span id="total">₦0</span></div>
+  <div class="total"><span>Total</span><b id="total">₦0</b></div>
   <div id="details" style="display:none">
     <label>Your name</label><input id="cname" placeholder="e.g. Ada">
     <label>Delivery address / pickup</label><input id="caddr" placeholder="Area, landmark">
-    <label>Note (optional)</label><textarea id="cnote" rows="2" placeholder="Less pepper, extra plantain..."></textarea>
+    <label>Note (optional)</label><textarea id="cnote" rows="2" placeholder="Less pepper, extra plantain…"></textarea>
   </div>
-  <button class="send" id="send" disabled>Add items to order</button>
-  <div class="note">Opens WhatsApp with your order pre-filled. Nothing is sent until you tap send in WhatsApp.</div>
+  <button class="send" id="send" disabled>Add items to your order</button>
+  <div class="note">Opens WhatsApp with your order ready — nothing sends until you tap send in WhatsApp.</div>
 </div>
 
-<footer>DEMO build by the agency · This is how your customers could order in one tap.</footer>
+<footer>DEMO ordering flow by Brightfront — <a href="../index.html" style="color:var(--lime)">see more work</a></footer>
 
 <script>
-// DEMO menu (fictional). In a real build these come from the client's products.
-const MENU = [
-  {cat:"Rice", items:[
-    {n:"Jollof Rice + Chicken", d:"Party-style, one piece chicken", p:2500},
-    {n:"Fried Rice + Beef", d:"With mixed veg", p:2500},
-    {n:"White Rice + Stew", d:"Rich tomato stew", p:2000},
-  ]},
-  {cat:"Swallow", items:[
-    {n:"Pounded Yam + Egusi", d:"With assorted meat", p:3000},
-    {n:"Eba + Okro Soup", d:"With fish", p:2500},
-  ]},
-  {cat:"Extras", items:[
-    {n:"Extra Chicken", d:"", p:1200},
-    {n:"Plantain (Dodo)", d:"", p:800},
-    {n:"Bottled Water", d:"50cl", p:300},
-  ]},
+var WA="0000000000";
+var MENU=[
+ {cat:"Rice",items:[
+   {n:"Jollof Rice + Chicken",d:"Party-style, one piece chicken",p:2500,e:"🍛",kw:"jollof,rice",l:201},
+   {n:"Fried Rice + Beef",d:"With mixed veg",p:2500,e:"🍚",kw:"fried,rice",l:202},
+   {n:"White Rice + Stew",d:"Rich tomato stew",p:2000,e:"🍲",kw:"rice,stew",l:203}]},
+ {cat:"Swallow",items:[
+   {n:"Pounded Yam + Egusi",d:"With assorted meat",p:3000,e:"🥘",kw:"egusi,soup",l:204},
+   {n:"Eba + Okro Soup",d:"With fish",p:2500,e:"🍜",kw:"okra,soup",l:205}]},
+ {cat:"Extras",items:[
+   {n:"Extra Chicken",d:"",p:1200,e:"🍗",kw:"grilled,chicken",l:206},
+   {n:"Plantain (Dodo)",d:"",p:800,e:"🍌",kw:"fried,plantain",l:207},
+   {n:"Bottled Water",d:"50cl",p:300,e:"💧",kw:"water,bottle",l:208}]}
 ];
-const WHATSAPP = "0000000000"; // <- client's number (intl format, no +) in a real build
-const cart = {};
-const menuEl = document.getElementById('menu');
-
-MENU.forEach((group,gi)=>{
-  const h=document.createElement('div');h.className='cat';h.textContent=group.cat;menuEl.appendChild(h);
-  group.items.forEach((it,ii)=>{
-    const key=gi+'-'+ii; cart[key]={...it,q:0};
-    const el=document.createElement('div');el.className='item';
-    el.innerHTML=`<div><h3>${it.n}</h3>${it.d?`<p>${it.d}</p>`:''}
-      <div class="qty"><button data-k="${key}" data-d="-1">−</button>
-      <span id="q-${key}">0</span>
-      <button data-k="${key}" data-d="1">+</button></div></div>
-      <div class="price">₦${it.p.toLocaleString()}</div>`;
-    menuEl.appendChild(el);
-  });
+var cart={},menuEl=document.getElementById('menu');
+MENU.forEach(function(g,gi){
+ var h=document.createElement('div');h.className='cat';h.textContent=g.cat;menuEl.appendChild(h);
+ g.items.forEach(function(it,ii){var k=gi+'-'+ii;cart[k]=Object.assign({},it,{q:0});
+  var el=document.createElement('div');el.className='item';
+  el.innerHTML='<div class="thumb"><span class="ph">'+it.e+'</span><img loading="lazy" alt="'+it.n+'" src="https://loremflickr.com/160/160/'+it.kw+'?lock='+it.l+'" onerror="this.remove()"></div>'
+   +'<div class="info"><h3>'+it.n+'</h3>'+(it.d?'<p>'+it.d+'</p>':'')+'<div class="price">₦'+it.p.toLocaleString()+'</div></div>'
+   +'<div class="qty"><button data-k="'+k+'" data-d="-1">−</button><span id="q-'+k+'">0</span><button data-k="'+k+'" data-d="1">+</button></div>';
+  menuEl.appendChild(el);});
 });
-
-function fmt(n){return '₦'+n.toLocaleString();}
-function refresh(){
-  let total=0,count=0;
-  for(const k in cart){total+=cart[k].p*cart[k].q;count+=cart[k].q;}
-  document.getElementById('total').textContent=fmt(total);
-  document.getElementById('details').style.display=count>0?'block':'none';
-  const btn=document.getElementById('send');
-  btn.disabled=count===0;
-  btn.textContent=count===0?'Add items to order':`Send order on WhatsApp (${count} item${count>1?'s':''})`;
-}
-menuEl.addEventListener('click',e=>{
-  const b=e.target.closest('button[data-k]'); if(!b)return;
-  const k=b.dataset.k, d=+b.dataset.d;
-  cart[k].q=Math.max(0,cart[k].q+d);
-  document.getElementById('q-'+k).textContent=cart[k].q;
-  refresh();
-});
-document.getElementById('send').addEventListener('click',()=>{
-  const name=document.getElementById('cname').value.trim();
-  const addr=document.getElementById('caddr').value.trim();
-  const note=document.getElementById('cnote').value.trim();
-  let lines=["*New order — Mama's Kitchen*",""],total=0;
-  for(const k in cart){if(cart[k].q>0){const s=cart[k].p*cart[k].q;total+=s;
-    lines.push(`• ${cart[k].q} x ${cart[k].n} — ${fmt(s)}`);}}
-  lines.push("",`*Total: ${fmt(total)}*`);
-  if(name)lines.push(`Name: ${name}`);
-  if(addr)lines.push(`Address/Pickup: ${addr}`);
-  if(note)lines.push(`Note: ${note}`);
-  const msg=encodeURIComponent(lines.join("\n"));
-  window.open(`https://wa.me/${WHATSAPP}?text=${msg}`,'_blank');
+function fmt(n){return '₦'+n.toLocaleString()}
+function refresh(){var t=0,c=0;for(var k in cart){t+=cart[k].p*cart[k].q;c+=cart[k].q}
+ document.getElementById('total').textContent=fmt(t);
+ document.getElementById('details').style.display=c>0?'block':'none';
+ var b=document.getElementById('send');b.disabled=c===0;
+ b.textContent=c===0?'Add items to your order':'Send order on WhatsApp ('+c+' item'+(c>1?'s':'')+')';}
+menuEl.addEventListener('click',function(e){var b=e.target.closest('button[data-k]');if(!b)return;
+ var k=b.dataset.k;cart[k].q=Math.max(0,cart[k].q+(+b.dataset.d));document.getElementById('q-'+k).textContent=cart[k].q;refresh();});
+document.getElementById('send').addEventListener('click',function(){
+ var name=document.getElementById('cname').value.trim(),addr=document.getElementById('caddr').value.trim(),note=document.getElementById('cnote').value.trim();
+ var lines=["*New order — Mama's Kitchen*",""],t=0;
+ for(var k in cart){if(cart[k].q>0){var s=cart[k].p*cart[k].q;t+=s;lines.push("• "+cart[k].q+" x "+cart[k].n+" — "+fmt(s));}}
+ lines.push("","*Total: "+fmt(t)+"*");
+ if(name)lines.push("Name: "+name);if(addr)lines.push("Address/Pickup: "+addr);if(note)lines.push("Note: "+note);
+ window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(lines.join("\n")),"_blank");
 });
 refresh();
 </script>
