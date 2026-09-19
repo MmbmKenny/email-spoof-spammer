@@ -57,7 +57,7 @@ img{max-width:100%}
 
 /* ---- layout ---- */
 .wrap{max-width:1120px;margin:0 auto;padding-inline:20px}
-section{position:relative;padding-block:clamp(64px,10vw,120px)}
+section{position:relative;padding-block:clamp(46px,7vw,92px)}
 .eyebrow{font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--mint);
   display:inline-flex;align-items:center;gap:9px}
 .eyebrow::before{content:"";width:26px;height:1px;background:linear-gradient(90deg,var(--mint),transparent)}
@@ -71,9 +71,17 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.04;letter-spac
 .nav.scrolled{background:rgba(8,11,15,.72);backdrop-filter:blur(var(--blur)) saturate(140%);
   -webkit-backdrop-filter:blur(var(--blur)) saturate(140%);border-bottom:1px solid var(--stroke);padding:11px 0}
 .nav .row{display:flex;align-items:center;justify-content:space-between}
-.brand{font-family:var(--display);font-weight:700;font-size:22px;letter-spacing:-.02em;display:flex;align-items:center;gap:10px}
-.brand .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--mint),var(--teal));
-  box-shadow:0 0 16px rgba(53,227,161,.8)}
+.brand{display:inline-flex;align-items:center;gap:11px}
+.logo-mark{display:block;width:34px;height:34px;transition:transform .35s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 4px 12px rgba(53,227,161,.32))}
+.logo-mark svg{display:block;overflow:visible}
+.logo-mark .spark{transform-box:fill-box;transform-origin:center;animation:twinkle 4.5s ease-in-out infinite}
+.logo-mark .shine{transform-box:fill-box;animation:shine 6s ease-in-out infinite}
+.brand:hover .logo-mark{transform:scale(1.07) rotate(-4deg)}
+.logo-word{font-family:var(--display);font-weight:700;font-size:22px;letter-spacing:-.02em;line-height:1}
+.logo-word span{background:linear-gradient(120deg,var(--mint),var(--teal),var(--violet));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.brand.sm .logo-mark{width:28px;height:28px}.brand.sm .logo-word{font-size:19px}
+@keyframes twinkle{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.13);opacity:1}}
+@keyframes shine{0%,70%{transform:translateX(-22px) skewX(-18deg);opacity:0}80%{opacity:.85}100%{transform:translateX(46px) skewX(-18deg);opacity:0}}
 .nav-links{display:flex;align-items:center;gap:28px}
 .nav-links a{color:var(--muted);font-size:14px;font-weight:500;transition:color .2s}
 .nav-links a:hover{color:var(--ink)}
@@ -92,16 +100,16 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.04;letter-spac
 .btn svg{width:17px;height:17px}
 
 /* ---- hero ---- */
-.hero{padding-top:clamp(120px,18vw,180px);padding-bottom:clamp(40px,7vw,80px)}
-.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
-@media (max-width:900px){.hero-grid{grid-template-columns:1fr;gap:34px}}
+.hero{padding-top:clamp(84px,13vw,128px);padding-bottom:clamp(24px,5vw,52px)}
+.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:40px;align-items:center}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr;gap:20px}}
 .hero h1{font-size:clamp(40px,7.2vw,76px);margin:22px 0 0}
 .hero h1 .g{background:linear-gradient(115deg,var(--mint),var(--teal) 55%,var(--violet));
   -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-style:italic;font-weight:500}
 .word{display:inline-block;will-change:transform,opacity}
-.hero .lede{margin-top:24px}
-.hero-cta{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
-.trustline{margin-top:22px;display:flex;align-items:center;gap:10px;color:var(--faint);font-size:13.5px}
+.hero .lede{margin-top:16px}
+.hero-cta{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
+.trustline{margin-top:16px;display:flex;align-items:center;gap:10px;color:var(--faint);font-size:13.5px}
 .trustline b{color:var(--muted);font-weight:600}
 .pulse{width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 0 rgba(53,227,161,.6);animation:pulse 2.2s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(53,227,161,.55)}70%{box-shadow:0 0 0 12px rgba(53,227,161,0)}100%{box-shadow:0 0 0 0 rgba(53,227,161,0)}}
@@ -257,10 +265,11 @@ footer .honesty{font-size:12.5px;color:var(--faint);max-width:52ch}
 /* ---- reveal (JS-gated so no-JS shows everything) ---- */
 .js .reveal{opacity:0;transform:translateY(26px)}
 .js .reveal-c>*{opacity:0;transform:translateY(22px)}
+.js .hero .eyebrow,.js .hero .lede,.js .hero-cta,.js .hero .trustline,.js .hero .glasscard,.js #headline .word{opacity:0}
 
 @media (prefers-reduced-motion:reduce){
-  .mesh,.floaty,.pulse,.marquee-track{animation:none!important}
-  .js .reveal,.js .reveal-c>*{opacity:1!important;transform:none!important}
+  .mesh,.floaty,.pulse,.marquee-track,.logo-mark .spark,.logo-mark .shine{animation:none!important}
+  .js .reveal,.js .reveal-c>*,.js .hero .eyebrow,.js .hero .lede,.js .hero-cta,.js .hero .trustline,.js .hero .glasscard,.js #headline .word{opacity:1!important;transform:none!important}
 }
 </style>
 </head>
@@ -274,7 +283,20 @@ footer .honesty{font-size:12.5px;color:var(--faint);max-width:52ch}
 
 <!-- NAV -->
 <nav class="nav" id="nav"><div class="wrap row">
-  <a class="brand" href="#top"><span class="dot"></span>Brightfront</a>
+  <a class="brand" href="#top" aria-label="Brightfront — home">
+    <span class="logo-mark">
+      <svg viewBox="0 0 40 40" width="34" height="34" aria-hidden="true">
+        <defs>
+          <linearGradient id="bfgn" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#35e3a1"/><stop offset=".55" stop-color="#18c6d6"/><stop offset="1" stop-color="#8b7bf7"/></linearGradient>
+          <clipPath id="bfcn"><rect x="1" y="1" width="38" height="38" rx="11"/></clipPath>
+        </defs>
+        <rect x="1" y="1" width="38" height="38" rx="11" fill="url(#bfgn)"/>
+        <path class="spark" d="M20 9c1 7 4 10 11 11-7 1-10 4-11 11-1-7-4-10-11-11 7-1 10-4 11-11Z" fill="#05130c"/>
+        <g clip-path="url(#bfcn)"><rect class="shine" x="0" y="-2" width="9" height="44" fill="rgba(255,255,255,.4)"/></g>
+      </svg>
+    </span>
+    <span class="logo-word">Bright<span>front</span></span>
+  </a>
   <div class="nav-links">
     <a href="#work">Work</a>
     <a href="#services">Services</a>
@@ -288,23 +310,23 @@ footer .honesty{font-size:12.5px;color:var(--faint);max-width:52ch}
 <header class="hero wrap" id="top">
   <div class="hero-grid">
     <div>
-      <span class="eyebrow reveal">Brightfront · Digital Studio</span>
+      <span class="eyebrow">Brightfront · Digital Studio</span>
       <h1 id="headline">
         <span class="word">Make</span> <span class="word">your</span> <span class="word">business</span>
         <span class="word g">impossible</span> <span class="word g">to</span> <span class="word g">ignore.</span>
       </h1>
-      <p class="lede reveal">Fast, beautiful websites, catalogs and ordering tools that bring small businesses more customers and less manual work — built in days, starting from ₦30,000.</p>
-      <div class="hero-cta reveal">
+      <p class="lede">Fast, beautiful websites, catalogs and ordering tools that bring small businesses more customers and less manual work — built in days, starting from ₦30,000.</p>
+      <div class="hero-cta">
         <a class="btn btn-primary magnetic" href="#contact">
           Get a Free Business Assessment
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
         <a class="btn btn-ghost" href="#work">See live work</a>
       </div>
-      <div class="trustline reveal"><span class="pulse"></span><span><b>Real working demos below</b> — no stock photos, no fake reviews.</span></div>
+      <div class="trustline"><span class="pulse"></span><span><b>Real working demos below</b> — no stock photos, no fake reviews.</span></div>
     </div>
 
-    <div class="reveal">
+    <div class="hero-card">
       <div class="glasscard assess floaty">
         <div class="cap">Free · No obligation</div>
         <h3>Business Assessment</h3>
@@ -438,7 +460,20 @@ footer .honesty{font-size:12.5px;color:var(--faint);max-width:52ch}
 </section>
 
 <footer><div class="wrap row">
-  <div><a class="brand" href="#top" style="font-size:19px"><span class="dot"></span>Brightfront</a>
+  <div><a class="brand sm" href="#top" aria-label="Brightfront — home">
+    <span class="logo-mark">
+      <svg viewBox="0 0 40 40" width="34" height="34" aria-hidden="true">
+        <defs>
+          <linearGradient id="bfgf" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#35e3a1"/><stop offset=".55" stop-color="#18c6d6"/><stop offset="1" stop-color="#8b7bf7"/></linearGradient>
+          <clipPath id="bfcf"><rect x="1" y="1" width="38" height="38" rx="11"/></clipPath>
+        </defs>
+        <rect x="1" y="1" width="38" height="38" rx="11" fill="url(#bfgf)"/>
+        <path class="spark" d="M20 9c1 7 4 10 11 11-7 1-10 4-11 11-1-7-4-10-11-11 7-1 10-4 11-11Z" fill="#05130c"/>
+        <g clip-path="url(#bfcf)"><rect class="shine" x="0" y="-2" width="9" height="44" fill="rgba(255,255,255,.4)"/></g>
+      </svg>
+    </span>
+    <span class="logo-word">Bright<span>front</span></span>
+  </a>
     <p style="margin:10px 0 0;color:var(--muted)">Simple digital systems for growing businesses.</p></div>
   <p class="honesty">No fake reviews. No fake clients. The demos above use sample businesses and are labelled as demos. Real work, honestly priced.</p>
 </div></footer>
