@@ -67,7 +67,9 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.04;letter-spac
 
 /* ---- nav ---- */
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:padding .3s,background .3s,border-color .3s;
-  padding:18px 0;border-bottom:1px solid transparent}
+  padding:18px 0;padding-top:calc(18px + env(safe-area-inset-top,0px));border-bottom:1px solid transparent}
+.eyebrow.lockup::before{display:none}
+.eyebrow .logo-mark{width:26px;height:26px}
 .nav.scrolled{background:rgba(8,11,15,.72);backdrop-filter:blur(var(--blur)) saturate(140%);
   -webkit-backdrop-filter:blur(var(--blur)) saturate(140%);border-bottom:1px solid var(--stroke);padding:11px 0}
 .nav .row{display:flex;align-items:center;justify-content:space-between}
@@ -185,10 +187,22 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.04;letter-spac
 .phone .screen{position:relative;width:100%;height:100%;border-radius:33px;overflow:hidden;background:#05080b}
 .phone iframe{position:absolute;top:0;left:0;width:390px;height:806px;border:0;
   transform:scale(.708);transform-origin:top left;pointer-events:none;background:#0b0f14}
-.phone .tap{position:absolute;inset:0;z-index:4;display:flex;align-items:flex-end;justify-content:center;
-  padding-bottom:22px;background:linear-gradient(180deg,transparent 60%,rgba(5,8,11,.55));opacity:0;transition:opacity .3s}
-.phone:hover .tap{opacity:1}
-.tap a{background:rgba(255,255,255,.92);color:#08120d;font-weight:700;font-size:13px;padding:10px 16px;border-radius:100px;pointer-events:auto}
+.phone .tap{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);z-index:5;
+  background:rgba(255,255,255,.95);color:#08120d;font-weight:700;font-size:12px;padding:9px 15px;border:0;
+  border-radius:100px;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.45)}
+.demo-modal{position:fixed;inset:0;z-index:200;background:rgba(5,8,11,.9);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;flex-direction:column;
+  padding-top:env(safe-area-inset-top,0px)}
+.demo-modal[hidden]{display:none}
+.demo-modal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;
+  border-bottom:1px solid var(--stroke);background:rgba(8,11,15,.75)}
+.demo-modal-title{display:flex;align-items:center;gap:9px;font-size:14px;color:var(--ink)}
+.demo-tag{font-size:10px;font-weight:800;letter-spacing:.12em;background:var(--gold);color:#111;padding:3px 8px;border-radius:20px}
+.demo-modal-actions{display:flex;align-items:center;gap:8px}
+.demo-modal-btn{font-size:13px;font-weight:600;padding:9px 14px;border-radius:100px;border:1px solid var(--stroke-2);
+  background:var(--glass);color:var(--ink);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+.demo-modal-btn.close{width:38px;height:38px;padding:0;justify-content:center;font-size:16px}
+.demo-modal iframe{flex:1;width:100%;border:0;background:#0b0f14}
 .demo-live{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--faint);margin-top:16px;justify-content:center}
 .demo-dots{display:flex;gap:7px;justify-content:center;margin-top:18px}
 .demo-dots button{width:8px;height:8px;border-radius:50%;border:0;background:var(--stroke-2);cursor:pointer;padding:0;transition:.25s}
@@ -199,18 +213,24 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.04;letter-spac
 .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px}
 @media (max-width:900px){.svc-grid{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:560px){.svc-grid{grid-template-columns:1fr}}
-.svc{position:relative;background:var(--glass);border:1px solid var(--stroke);border-radius:var(--r);
-  padding:26px;transition:transform .3s,border-color .3s,background .3s;transform-style:preserve-3d;overflow:hidden}
-.svc:hover{border-color:var(--stroke-2);background:var(--glass-2)}
-.svc .ico{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;font-size:22px;margin-bottom:16px;
+.svc{background:transparent;border:0;padding:0;perspective:1400px;min-height:250px}
+.svc-inner{position:relative;width:100%;height:100%;min-height:250px;cursor:pointer;
+  transition:transform .7s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d}
+.svc.flipped .svc-inner{transform:rotateY(180deg)}
+.svc-face{position:absolute;inset:0;-webkit-backface-visibility:hidden;backface-visibility:hidden;
+  border:1px solid var(--stroke);border-radius:var(--r);padding:22px;display:flex;flex-direction:column;
+  background:var(--glass);overflow:auto;transition:border-color .3s,background .3s}
+.svc:hover .svc-front{border-color:var(--stroke-2);background:var(--glass-2)}
+.svc-front .ico{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;font-size:22px;margin-bottom:14px;
   background:linear-gradient(135deg,rgba(53,227,161,.18),rgba(24,198,214,.10));border:1px solid var(--stroke)}
-.svc h3{font-family:var(--body);font-weight:700;font-size:18px;margin-bottom:7px}
-.svc p{color:var(--muted);font-size:14px;margin:0 0 16px}
-.svc .price{font-family:var(--display);font-weight:600;font-size:17px;color:var(--mint)}
-.svc .glow{position:absolute;width:180px;height:180px;border-radius:50%;filter:blur(50px);opacity:0;
-  background:radial-gradient(circle,rgba(53,227,161,.5),transparent 70%);transition:opacity .3s;pointer-events:none;z-index:0}
-.svc:hover .glow{opacity:.5}
-.svc>*{position:relative;z-index:1}
+.svc-front h3{font-family:var(--body);font-weight:700;font-size:17px;margin-bottom:6px}
+.svc-front .price{font-family:var(--display);font-weight:600;font-size:16px;color:var(--mint);margin-top:auto}
+.svc-hint{font-size:11.5px;color:var(--faint);margin-top:12px;display:flex;align-items:center;gap:6px}
+.svc-front .price+.svc-hint{margin-top:12px}
+.svc-back{transform:rotateY(180deg);background:linear-gradient(160deg,rgba(53,227,161,.12),var(--glass));border-color:var(--stroke-2)}
+.svc-back h3{font-family:var(--body);font-weight:700;font-size:16px;margin-bottom:8px;color:var(--mint)}
+.svc-back p{color:var(--ink);font-size:13.5px;line-height:1.55;margin:0 0 8px}
+.svc-back .svc-hint{margin-top:auto}
 
 /* ---- process ---- */
 .steps{position:relative;margin-top:26px;padding-left:8px}
@@ -309,7 +329,7 @@ footer .honesty{font-size:12.5px;color:var(--faint);max-width:52ch}
 <header class="hero wrap" id="top">
   <div class="hero-grid">
     <div>
-      <span class="eyebrow">Brightfront · Digital Studio</span>
+      <span class="eyebrow lockup"><span class="logo-mark"><svg viewBox="0 0 40 40" width="26" height="26" aria-hidden="true"><defs><linearGradient id="bfgh" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#35e3a1"/><stop offset=".55" stop-color="#18c6d6"/><stop offset="1" stop-color="#8b7bf7"/></linearGradient><clipPath id="bfch"><rect x="1" y="1" width="38" height="38" rx="11"/></clipPath></defs><rect x="1" y="1" width="38" height="38" rx="11" fill="url(#bfgh)"/><path class="spark" d="M20 9c1 7 4 10 11 11-7 1-10 4-11 11-1-7-4-10-11-11 7-1 10-4 11-11Z" fill="#05130c"/><g clip-path="url(#bfch)"><rect class="shine" x="0" y="-2" width="9" height="44" fill="rgba(255,255,255,.4)"/></g></svg></span>Brightfront · Digital Studio</span>
       <h1 id="headline">
         <span class="word">Make</span> <span class="word">your</span> <span class="word">business</span>
         <span class="word g">impossible</span> <span class="word g">to</span> <span class="word g">ignore.</span>
@@ -387,12 +407,13 @@ footer .honesty{font-size:12.5px;color:var(--faint);max-width:52ch}
           <div class="notch"></div>
           <div class="screen">
             <iframe id="demoframe" title="Live demo" loading="eager" scrolling="no"></iframe>
-            <div class="tap"><a id="tapopen" target="_blank" rel="noopener">Open full demo ↗</a></div>
+            <button class="tap" id="phoneOpen" type="button">Open live demo ↗</button>
           </div>
         </div>
       </div>
       <div class="demo-live"><span class="pulse"></span> Live preview · <span id="demoname">Restaurant Website</span></div>
       <div class="demo-dots" id="dots"></div>
+      <div class="demo-open"><button class="btn btn-primary" id="demoOpen" type="button">Open live demo full screen ↗</button></div>
     </div>
   </div>
 </section>
@@ -477,6 +498,17 @@ footer .honesty{font-size:12.5px;color:var(--faint);max-width:52ch}
   <p class="honesty">No fake reviews. No fake clients. The demos above use sample businesses and are labelled as demos. Real work, honestly priced.</p>
 </div></footer>
 
+<div class="demo-modal" id="demoModal" hidden>
+  <div class="demo-modal-head">
+    <span class="demo-modal-title"><span class="pulse"></span> <b id="demoModalName">Demo</b> <span class="demo-tag">DEMO</span></span>
+    <div class="demo-modal-actions">
+      <a id="demoModalNew" class="demo-modal-btn" target="_blank" rel="noopener">Open in new tab ↗</a>
+      <button id="demoModalClose" class="demo-modal-btn close" type="button" aria-label="Close">✕</button>
+    </div>
+  </div>
+  <iframe id="demoModalFrame" title="Live demo (full screen)"></iframe>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
@@ -495,18 +527,22 @@ footer .honesty{font-size:12.5px;color:var(--faint);max-width:52ch}
 
   /* ---------- services data ---------- */
   var SERVICES = [
-    {i:"🌐",t:"Business Website",d:"A polished, mobile-first site with WhatsApp contact, map & basic SEO.",p:"from ₦30,000"},
-    {i:"🛍️",t:"Online Product Catalog",d:"Browsable catalog with search and one-tap WhatsApp ordering.",p:"₦20,000–50,000+"},
-    {i:"💬",t:"WhatsApp Ordering",d:"Turn browsers into orders with clean, auto-filled WhatsApp messages.",p:"₦30,000–75,000+"},
-    {i:"🧾",t:"Receipt & Invoice System",d:"Branded, printable receipts with payment status and PDF.",p:"₦20,000–50,000+"},
-    {i:"📅",t:"Social Content Package",d:"30 days of captions, hooks and post ideas, ready to publish.",p:"₦15,000–30,000+"},
-    {i:"🎯",t:"Product Ad Creative",d:"Ad angles, hooks, scripts and copy that actually sell.",p:"₦10,000–25,000+"}
+    {i:"🌐",t:"Business Website",p:"from ₦30,000",long:"A professional, mobile-first website customers find when they Google you — your services or products, WhatsApp contact, Google Map, contact form and basic SEO, deployed and live. The online home that makes new customers trust you."},
+    {i:"🛍️",t:"Online Product Catalog",p:"₦20,000–50,000+",long:"An always-open catalog customers browse and search themselves — categories, product pages and prices — so you stop answering 'what do you have?' in the DMs. Any item can be ordered on WhatsApp in one tap."},
+    {i:"💬",t:"WhatsApp Ordering",p:"₦30,000–75,000+",long:"A guided flow where customers pick items, set quantity and details, and it builds a clean, complete order message straight to your WhatsApp — no more lost or half-finished DM orders."},
+    {i:"🧾",t:"Receipt & Invoice System",p:"₦20,000–50,000+",long:"Generate branded, professional receipts and invoices in seconds — itemised, with tax and discount, payment status, and PDF or print. Looks legit and keeps your records tidy."},
+    {i:"📅",t:"Social Content Package",p:"₦15,000–30,000+",long:"30 days of ready-to-post captions, hooks, CTAs and content ideas written for your business, so you stay visible without staring at a blank screen."},
+    {i:"🎯",t:"Product Ad Creative",p:"₦10,000–25,000+",long:"Scroll-stopping ad angles, hooks, short-video scripts and captions that make people actually want your product — plus matching landing-page copy."}
   ];
   var svc = document.getElementById("svc");
   SERVICES.forEach(function(s){
     var el = document.createElement("div");
     el.className = "svc";
-    el.innerHTML = '<div class="glow"></div><div class="ico">'+s.i+'</div><h3>'+s.t+'</h3><p>'+s.d+'</p><div class="price">'+s.p+'</div>';
+    el.innerHTML = '<div class="svc-inner">'
+      + '<div class="svc-face svc-front"><div class="ico">'+s.i+'</div><h3>'+s.t+'</h3><div class="price">'+s.p+'</div><div class="svc-hint">\u21bb Tap for details</div></div>'
+      + '<div class="svc-face svc-back"><h3>'+s.t+'</h3><p>'+s.long+'</p><div class="svc-hint">\u21a9 Tap to go back</div></div>'
+      + '</div>';
+    el.addEventListener("click", function(){ el.classList.toggle("flipped"); });
     svc.appendChild(el);
   });
 
@@ -522,7 +558,7 @@ footer .honesty{font-size:12.5px;color:var(--faint);max-width:52ch}
   var dots = document.getElementById("dots");
   var frame = document.getElementById("demoframe");
   var demoName = document.getElementById("demoname");
-  var tapOpen = document.getElementById("tapopen");
+  var currentUrl = "", currentName = "";
   var active = -1, timer = null;
 
   DEMOS.forEach(function(d,idx){
@@ -543,7 +579,7 @@ footer .honesty{font-size:12.5px;color:var(--faint);max-width:52ch}
     var d = DEMOS[idx];
     var url = DEMO_BASE + d.slug + "/index.html";
     frame.src = url;
-    tapOpen.href = url;
+    currentUrl = url; currentName = d.t;
     demoName.textContent = d.t;
     Array.prototype.forEach.call(picker.children, function(c,i){ c.classList.toggle("active", i===idx); });
     Array.prototype.forEach.call(dots.children, function(c,i){ c.classList.toggle("on", i===idx); });
@@ -567,6 +603,22 @@ footer .honesty{font-size:12.5px;color:var(--faint);max-width:52ch}
     var dx = e.changedTouches[0].clientX - sx;
     if(Math.abs(dx) > 40){ go((active + (dx<0?1:DEMOS.length-1))%DEMOS.length, true); }
   }, {passive:true});
+
+  /* ---------- demo full-screen overlay (works in preview AND deployed) ---------- */
+  var modal = document.getElementById("demoModal");
+  var modalFrame = document.getElementById("demoModalFrame");
+  var modalName = document.getElementById("demoModalName");
+  var modalNew = document.getElementById("demoModalNew");
+  function openDemo(){
+    modalFrame.src = currentUrl; modalName.textContent = currentName; modalNew.href = currentUrl;
+    modal.hidden = false; document.documentElement.style.overflow = "hidden";
+  }
+  function closeDemo(){ modal.hidden = true; modalFrame.src = "about:blank"; document.documentElement.style.overflow = ""; }
+  document.getElementById("phoneOpen").addEventListener("click", openDemo);
+  document.getElementById("demoOpen").addEventListener("click", openDemo);
+  document.getElementById("demoModalClose").addEventListener("click", closeDemo);
+  modal.addEventListener("click", function(e){ if(e.target === modal) closeDemo(); });
+  document.addEventListener("keydown", function(e){ if(e.key === "Escape" && !modal.hidden) closeDemo(); });
 
   /* ---------- nav shrink ---------- */
   var nav = document.getElementById("nav");
@@ -655,17 +707,6 @@ footer .honesty{font-size:12.5px;color:var(--faint);max-width:52ch}
     b.addEventListener("mouseleave", function(){ gsap.to(b,{x:0,y:0,duration:.5,ease:"elastic.out(1,.4)"}); });
   });
 
-  /* service card tilt */
-  document.querySelectorAll(".svc").forEach(function(card){
-    card.addEventListener("mousemove", function(e){
-      var r=card.getBoundingClientRect();
-      var rx=((e.clientY-r.top)/r.height-.5)*-6, ry=((e.clientX-r.left)/r.width-.5)*6;
-      var g=card.querySelector(".glow");
-      if(g){ g.style.left=(e.clientX-r.left-90)+"px"; g.style.top=(e.clientY-r.top-90)+"px"; }
-      gsap.to(card,{rotateX:rx,rotateY:ry,duration:.3,transformPerspective:800});
-    });
-    card.addEventListener("mouseleave", function(){ gsap.to(card,{rotateX:0,rotateY:0,duration:.5}); });
-  });
 })();
 </script>
 
