@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mama's Kitchen — WhatsApp Ordering (DEMO)</title>
+<style>
+:root{--bg:#faf7f2;--card:#fff;--ink:#22252b;--muted:#77808c;--brand:#e8562a;
+--brand-d:#c8431d;--wa:#25d366;--line:#eee2d6}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.55 system-ui,Segoe UI,Roboto,sans-serif}
+.demo-flag{background:#22252b;color:#fff;text-align:center;padding:6px;font-size:13px}
+header{background:var(--brand);color:#fff;padding:22px 16px;text-align:center}
+header h1{margin:0;font-size:22px}header p{margin:4px 0 0;opacity:.9;font-size:14px}
+.wrap{max-width:640px;margin:0 auto;padding:16px}
+.cat{font-weight:700;margin:18px 0 8px;font-size:14px;text-transform:uppercase;
+letter-spacing:.05em;color:var(--muted)}
+.item{background:var(--card);border:1px solid var(--line);border-radius:14px;
+padding:14px;display:flex;justify-content:space-between;align-items:center;margin:10px 0}
+.item h3{margin:0;font-size:16px}.item p{margin:2px 0 0;color:var(--muted);font-size:13px}
+.price{font-weight:700;color:var(--brand);white-space:nowrap;margin-left:12px}
+.qty{display:flex;align-items:center;gap:10px;margin-top:8px}
+.qty button{width:30px;height:30px;border:1px solid var(--line);background:#fff;
+border-radius:8px;font-size:18px;cursor:pointer}
+.qty span{min-width:20px;text-align:center;font-weight:600}
+.cart{position:sticky;bottom:0;background:var(--card);border-top:1px solid var(--line);
+padding:14px 16px;box-shadow:0 -6px 20px rgba(0,0,0,.06)}
+.cart .total{display:flex;justify-content:space-between;font-weight:700;margin-bottom:10px}
+label{display:block;font-size:13px;color:var(--muted);margin:8px 0 3px}
+input,textarea{width:100%;padding:10px;border:1px solid var(--line);border-radius:10px;
+font:inherit;background:#fff;color:var(--ink)}
+.send{width:100%;background:var(--wa);color:#fff;border:0;padding:14px;border-radius:12px;
+font-size:16px;font-weight:700;cursor:pointer;margin-top:12px}
+.send:disabled{background:#bcd9c6;cursor:not-allowed}
+.note{font-size:12px;color:var(--muted);text-align:center;margin-top:8px}
+footer{text-align:center;padding:24px;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+<div class="demo-flag">DEMO — fictional business, for demonstration only</div>
+<header>
+  <h1>🍲 Mama's Kitchen</h1>
+  <p>Home-style meals · Lagos · Order on WhatsApp</p>
+</header>
+<div class="wrap" id="menu"></div>
+
+<div class="cart">
+  <div class="total"><span>Total</span><span id="total">₦0</span></div>
+  <div id="details" style="display:none">
+    <label>Your name</label><input id="cname" placeholder="e.g. Ada">
+    <label>Delivery address / pickup</label><input id="caddr" placeholder="Area, landmark">
+    <label>Note (optional)</label><textarea id="cnote" rows="2" placeholder="Less pepper, extra plantain..."></textarea>
+  </div>
+  <button class="send" id="send" disabled>Add items to order</button>
+  <div class="note">Opens WhatsApp with your order pre-filled. Nothing is sent until you tap send in WhatsApp.</div>
+</div>
+
+<footer>DEMO build by the agency · This is how your customers could order in one tap.</footer>
+
+<script>
+// DEMO menu (fictional). In a real build these come from the client's products.
+const MENU = [
+  {cat:"Rice", items:[
+    {n:"Jollof Rice + Chicken", d:"Party-style, one piece chicken", p:2500},
+    {n:"Fried Rice + Beef", d:"With mixed veg", p:2500},
+    {n:"White Rice + Stew", d:"Rich tomato stew", p:2000},
+  ]},
+  {cat:"Swallow", items:[
+    {n:"Pounded Yam + Egusi", d:"With assorted meat", p:3000},
+    {n:"Eba + Okro Soup", d:"With fish", p:2500},
+  ]},
+  {cat:"Extras", items:[
+    {n:"Extra Chicken", d:"", p:1200},
+    {n:"Plantain (Dodo)", d:"", p:800},
+    {n:"Bottled Water", d:"50cl", p:300},
+  ]},
+];
+const WHATSAPP = "0000000000"; // <- client's number (intl format, no +) in a real build
+const cart = {};
+const menuEl = document.getElementById('menu');
+
+MENU.forEach((group,gi)=>{
+  const h=document.createElement('div');h.className='cat';h.textContent=group.cat;menuEl.appendChild(h);
+  group.items.forEach((it,ii)=>{
+    const key=gi+'-'+ii; cart[key]={...it,q:0};
+    const el=document.createElement('div');el.className='item';
+    el.innerHTML=`<div><h3>${it.n}</h3>${it.d?`<p>${it.d}</p>`:''}
+      <div class="qty"><button data-k="${key}" data-d="-1">−</button>
+      <span id="q-${key}">0</span>
+      <button data-k="${key}" data-d="1">+</button></div></div>
+      <div class="price">₦${it.p.toLocaleString()}</div>`;
+    menuEl.appendChild(el);
+  });
+});
+
+function fmt(n){return '₦'+n.toLocaleString();}
+function refresh(){
+  let total=0,count=0;
+  for(const k in cart){total+=cart[k].p*cart[k].q;count+=cart[k].q;}
+  document.getElementById('total').textContent=fmt(total);
+  document.getElementById('details').style.display=count>0?'block':'none';
+  const btn=document.getElementById('send');
+  btn.disabled=count===0;
+  btn.textContent=count===0?'Add items to order':`Send order on WhatsApp (${count} item${count>1?'s':''})`;
+}
+menuEl.addEventListener('click',e=>{
+  const b=e.target.closest('button[data-k]'); if(!b)return;
+  const k=b.dataset.k, d=+b.dataset.d;
+  cart[k].q=Math.max(0,cart[k].q+d);
+  document.getElementById('q-'+k).textContent=cart[k].q;
+  refresh();
+});
+document.getElementById('send').addEventListener('click',()=>{
+  const name=document.getElementById('cname').value.trim();
+  const addr=document.getElementById('caddr').value.trim();
+  const note=document.getElementById('cnote').value.trim();
+  let lines=["*New order — Mama's Kitchen*",""],total=0;
+  for(const k in cart){if(cart[k].q>0){const s=cart[k].p*cart[k].q;total+=s;
+    lines.push(`• ${cart[k].q} x ${cart[k].n} — ${fmt(s)}`);}}
+  lines.push("",`*Total: ${fmt(total)}*`);
+  if(name)lines.push(`Name: ${name}`);
+  if(addr)lines.push(`Address/Pickup: ${addr}`);
+  if(note)lines.push(`Note: ${note}`);
+  const msg=encodeURIComponent(lines.join("\n"));
+  window.open(`https://wa.me/${WHATSAPP}?text=${msg}`,'_blank');
+});
+refresh();
+</script>
+</body>
+</html>

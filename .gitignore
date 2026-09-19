@@ -1,0 +1,13 @@
+# Real prospect data / PII — never commit
+sales/leads/crm.db
+sales/leads/leads.csv
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS
+.DS_Store
+sales/sales-dashboard.html

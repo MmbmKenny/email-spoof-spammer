@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lumo Store — Product Catalog (DEMO)</title>
+<style>
+:root{--bg:#fbfbfd;--ink:#1a1a2e;--muted:#7a7a8c;--brand:#6c3fd1;--line:#ececf5}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+font:15px/1.5 system-ui,Segoe UI,Roboto,sans-serif}
+.flag{background:#1a1a2e;color:#fff;text-align:center;padding:6px;font-size:13px}
+header{padding:20px;text-align:center;background:#fff;border-bottom:1px solid var(--line)}
+header h1{margin:0;color:var(--brand)}header p{margin:4px 0 0;color:var(--muted);font-size:14px}
+.controls{max-width:1000px;margin:16px auto;padding:0 16px;display:flex;gap:10px;flex-wrap:wrap}
+input,select{padding:10px;border:1px solid var(--line);border-radius:10px;font:inherit;background:#fff}
+#q{flex:1;min-width:180px}
+.chips{max-width:1000px;margin:0 auto;padding:0 16px 8px;display:flex;gap:8px;flex-wrap:wrap}
+.chip{padding:6px 14px;border:1px solid var(--line);border-radius:20px;background:#fff;cursor:pointer;font-size:13px}
+.chip.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+.grid{max-width:1000px;margin:0 auto;padding:16px;display:grid;
+grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px}
+.p{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.p .img{height:140px;background:linear-gradient(135deg,#b79cf0,#6c3fd1);display:flex;align-items:center;justify-content:center;font-size:40px}
+.p .b{padding:12px;display:flex;flex-direction:column;gap:6px;flex:1}
+.p h3{margin:0;font-size:15px}.p .price{color:var(--brand);font-weight:800}
+.p small{color:var(--muted)}
+.order{margin-top:auto;background:#25d366;color:#fff;text-align:center;text-decoration:none;
+padding:9px;border-radius:9px;font-weight:600;font-size:14px}
+.empty{text-align:center;color:var(--muted);padding:40px}
+footer{text-align:center;color:var(--muted);padding:24px;font-size:13px}
+</style>
+</head>
+<body>
+<div class="flag">DEMO — fictional store, for demonstration only</div>
+<header><h1>Lumo Store</h1><p>Gadgets & accessories · Browse, then order on WhatsApp</p></header>
+
+<div class="controls">
+  <input id="q" placeholder="Search products...">
+  <select id="sort"><option value="feat">Featured</option><option value="low">Price: low → high</option><option value="high">Price: high → low</option></select>
+</div>
+<div class="chips" id="chips"></div>
+<div class="grid" id="grid"></div>
+<footer>DEMO catalog built by the agency · Customers browse everything and order in one tap.</footer>
+
+<script>
+const WHATSAPP="0000000000";
+const PRODUCTS=[
+  {n:"Wireless Earbuds",c:"Audio",p:12000,e:"🎧",feat:1},
+  {n:"Bluetooth Speaker",c:"Audio",p:18000,e:"🔊",feat:1},
+  {n:"Power Bank 20,000mAh",c:"Power",p:9500,e:"🔋",feat:1},
+  {n:"Fast Charger 30W",c:"Power",p:6000,e:"⚡"},
+  {n:"Phone Stand",c:"Accessories",p:3500,e:"📱"},
+  {n:"USB-C Cable (2m)",c:"Accessories",p:2500,e:"🔌"},
+  {n:"Smart Watch",c:"Wearables",p:25000,e:"⌚",feat:1},
+  {n:"Fitness Band",c:"Wearables",p:14000,e:"📿"},
+  {n:"Laptop Sleeve",c:"Accessories",p:7000,e:"💼"},
+  {n:"Webcam HD",c:"Accessories",p:16000,e:"📷"},
+];
+const cats=["All",...new Set(PRODUCTS.map(p=>p.c))];
+let activeCat="All";
+const chips=document.getElementById('chips');
+cats.forEach(c=>{const b=document.createElement('div');b.className='chip'+(c==='All'?' on':'');
+  b.textContent=c;b.onclick=()=>{activeCat=c;[...chips.children].forEach(x=>x.classList.remove('on'));b.classList.add('on');render();};
+  chips.appendChild(b);});
+document.getElementById('q').addEventListener('input',render);
+document.getElementById('sort').addEventListener('change',render);
+function fmt(n){return '₦'+n.toLocaleString();}
+function render(){
+  const q=document.getElementById('q').value.toLowerCase();
+  const sort=document.getElementById('sort').value;
+  let list=PRODUCTS.filter(p=>(activeCat==='All'||p.c===activeCat)&&p.n.toLowerCase().includes(q));
+  if(sort==='low')list.sort((a,b)=>a.p-b.p);
+  if(sort==='high')list.sort((a,b)=>b.p-a.p);
+  if(sort==='feat')list.sort((a,b)=>(b.feat||0)-(a.feat||0));
+  const g=document.getElementById('grid');
+  g.innerHTML=list.length?list.map(p=>{
+    const msg=encodeURIComponent(`Hi Lumo Store, I'd like to order: ${p.n} — ${fmt(p.p)}`);
+    return `<div class="p"><div class="img">${p.e}</div><div class="b">
+      <h3>${p.n}</h3><small>${p.c}</small><div class="price">${fmt(p.p)}</div>
+      <a class="order" target="_blank" href="https://wa.me/${WHATSAPP}?text=${msg}">Order on WhatsApp</a>
+      </div></div>`;}).join(''):'<div class="empty">No products match your search.</div>';
+}
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cedar & Stone Hotel (DEMO)</title>
+<style>
+:root{--bg:#f7f9fa;--ink:#1f2a33;--muted:#6b7a86;--brand:#12586b;--gold:#c9a24b;--line:#e3ebef}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.6 system-ui,Segoe UI,Roboto,sans-serif}
+.flag{background:#1f2a33;color:#fff;text-align:center;padding:6px;font-size:13px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:16px 22px;
+position:sticky;top:0;background:rgba(247,249,250,.95);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+nav b{color:var(--brand);font-size:18px;letter-spacing:.03em}
+nav a{color:var(--ink);text-decoration:none;margin-left:18px;font-size:14px}
+.hero{height:64vh;min-height:380px;display:flex;flex-direction:column;justify-content:center;align-items:center;
+text-align:center;color:#fff;padding:20px;background:linear-gradient(rgba(18,88,107,.55),rgba(31,42,51,.75)),
+repeating-linear-gradient(120deg,#12586b,#12586b 40px,#0f4a5a 40px,#0f4a5a 80px)}
+.hero h1{font-size:44px;margin:0 0 10px;font-weight:800}
+.hero p{font-size:18px;max-width:560px;opacity:.95}
+.gold{color:var(--gold)}
+.btn{display:inline-block;background:var(--gold);color:#1f2a33;padding:13px 28px;border-radius:8px;
+text-decoration:none;font-weight:700;margin-top:18px}
+.btn.wa{background:#25d366;color:#fff}
+.sec{max-width:1000px;margin:0 auto;padding:56px 20px}
+.sec h2{text-align:center;color:var(--brand);font-size:30px;margin-bottom:6px}
+.sub{text-align:center;color:var(--muted);margin-bottom:30px}
+.rooms{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+.room{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.room .img{height:150px;background:linear-gradient(135deg,var(--brand),#0d3f4d)}
+.room .b{padding:18px}.room h3{margin:0 0 4px}.room .price{color:var(--brand);font-weight:800;font-size:20px}
+.room ul{padding-left:18px;color:var(--muted);font-size:14px;margin:10px 0}
+.amen{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+.amen span{background:#fff;border:1px solid var(--line);border-radius:30px;padding:8px 16px;font-size:14px}
+footer{background:#1f2a33;color:#b9c6ce;text-align:center;padding:34px 20px;font-size:14px}
+</style>
+</head>
+<body>
+<div class="flag">DEMO — fictional hotel, for demonstration only</div>
+<nav><b>CEDAR &amp; STONE</b><div><a href="#rooms">Rooms</a><a href="#amenities">Amenities</a><a href="#book">Book</a></div></nav>
+
+<div class="hero">
+  <h1>Rest well in <span class="gold">the heart of the city</span></h1>
+  <p>Boutique comfort, warm service, and everything you need a tap away.</p>
+  <a class="btn" href="#book">Check availability</a>
+</div>
+
+<div class="sec" id="rooms">
+  <h2>Our Rooms</h2>
+  <div class="sub">Every stay includes breakfast and fast Wi-Fi.</div>
+  <div class="rooms">
+    <div class="room"><div class="img"></div><div class="b"><h3>Classic Queen</h3>
+      <div class="price">₦35,000<small style="color:var(--muted);font-weight:400"> /night</small></div>
+      <ul><li>Queen bed</li><li>City view</li><li>Work desk</li></ul>
+      <a class="btn wa" href="https://wa.me/0000000000?text=Hi%2C%20I'd%20like%20to%20book%20a%20Classic%20Queen" target="_blank">Book</a></div></div>
+    <div class="room"><div class="img"></div><div class="b"><h3>Deluxe King</h3>
+      <div class="price">₦52,000<small style="color:var(--muted);font-weight:400"> /night</small></div>
+      <ul><li>King bed</li><li>Lounge area</li><li>Rain shower</li></ul>
+      <a class="btn wa" href="https://wa.me/0000000000?text=Hi%2C%20I'd%20like%20to%20book%20a%20Deluxe%20King" target="_blank">Book</a></div></div>
+    <div class="room"><div class="img"></div><div class="b"><h3>Executive Suite</h3>
+      <div class="price">₦85,000<small style="color:var(--muted);font-weight:400"> /night</small></div>
+      <ul><li>Separate living room</li><li>Kitchenette</li><li>Premium view</li></ul>
+      <a class="btn wa" href="https://wa.me/0000000000?text=Hi%2C%20I'd%20like%20to%20book%20an%20Executive%20Suite" target="_blank">Book</a></div></div>
+  </div>
+</div>
+
+<div class="sec" id="amenities" style="background:#fff;border-radius:20px">
+  <h2>Amenities</h2><div class="sub">Everything for a comfortable stay.</div>
+  <div class="amen">
+    <span>🍳 Free breakfast</span><span>📶 Fast Wi-Fi</span><span>🅿️ Parking</span>
+    <span>❄️ A/C</span><span>🧺 Laundry</span><span>🏋️ Gym</span><span>🛎️ 24/7 front desk</span><span>🔌 Backup power</span>
+  </div>
+</div>
+
+<div class="sec" id="book" style="text-align:center">
+  <h2>Book Your Stay</h2>
+  <div class="sub">Reserve directly — no third-party fees. Message us and we'll confirm within minutes.</div>
+  <a class="btn wa" href="https://wa.me/0000000000?text=Hi%20Cedar%20%26%20Stone%2C%20I'd%20like%20to%20check%20availability" target="_blank">💬 Book on WhatsApp</a>
+</div>
+
+<footer>Cedar &amp; Stone Hotel · 8 Ring Road, Abuja · +234 000 000 0000<br>
+<small>DEMO website built by the agency</small></footer>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Receipt / Invoice Generator (DEMO)</title>
+<style>
+:root{--bg:#f4f6f9;--card:#fff;--ink:#1c2530;--muted:#6b7580;--brand:#2f6df0;--line:#e4e9f0}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+font:15px/1.5 system-ui,Segoe UI,Roboto,sans-serif}
+.demo-flag{background:#1c2530;color:#fff;text-align:center;padding:6px;font-size:13px}
+.app{max-width:900px;margin:0 auto;padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:760px){.app{grid-template-columns:1fr}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
+h2{font-size:16px;margin:0 0 12px}
+label{display:block;font-size:12px;color:var(--muted);margin:8px 0 3px}
+input{width:100%;padding:8px;border:1px solid var(--line);border-radius:8px;font:inherit}
+.line{display:grid;grid-template-columns:1fr 60px 90px 28px;gap:6px;margin-bottom:6px}
+.line input{padding:6px}
+button{font:inherit;cursor:pointer;border-radius:8px;border:1px solid var(--line);
+background:#fff;padding:8px 12px}
+.addbtn{background:var(--brand);color:#fff;border:0;width:100%;margin-top:6px}
+.actions{display:flex;gap:8px;margin-top:12px}
+.print{background:#20a76a;color:#fff;border:0;flex:1}
+/* receipt */
+#receipt{font-family:"Courier New",monospace;color:#111}
+.rc-head{text-align:center;border-bottom:2px dashed #bbb;padding-bottom:10px;margin-bottom:10px}
+.rc-head .biz{font-size:18px;font-weight:700}
+.rc-row{display:flex;justify-content:space-between;font-size:13px;margin:3px 0}
+.rc-items{border-top:1px dashed #bbb;border-bottom:1px dashed #bbb;padding:8px 0;margin:8px 0}
+.rc-total{font-size:16px;font-weight:700}
+.rc-foot{text-align:center;margin-top:12px;font-size:12px;color:#555}
+.badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700}
+.paid{background:#d5f5e3;color:#1e7d4d}.unpaid{background:#fde2e2;color:#c0392b}
+@media print{
+  .demo-flag,.editor,.actions,.app>.panel.editor{display:none!important}
+  body{background:#fff}.app{display:block;padding:0}
+  #receiptPanel{border:0;box-shadow:none}
+}
+</style>
+</head>
+<body>
+<div class="demo-flag">DEMO — sample business, for demonstration only</div>
+<div class="app">
+  <div class="panel editor">
+    <h2>Create receipt / invoice</h2>
+    <label>Business name</label><input id="biz" value="Glow Hair Studio">
+    <label>Business contact</label><input id="bizc" value="WhatsApp 0000 000 0000 · Lagos">
+    <label>Customer name</label><input id="cust" value="Ada Obi">
+    <label>Receipt #</label><input id="rno" value="0001">
+    <h2 style="margin-top:16px">Items / services</h2>
+    <div id="lines"></div>
+    <button class="addbtn" id="add">+ Add line</button>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <div><label>Discount (₦)</label><input id="disc" type="number" value="0"></div>
+      <div><label>Tax %</label><input id="tax" type="number" value="0"></div>
+    </div>
+    <label>Payment status</label>
+    <select id="status" style="width:100%;padding:8px;border:1px solid var(--line);border-radius:8px">
+      <option>PAID</option><option>UNPAID</option><option>PART-PAYMENT</option>
+    </select>
+    <div class="actions">
+      <button class="print" onclick="window.print()">🖨️ Print / Save as PDF</button>
+    </div>
+  </div>
+
+  <div class="panel" id="receiptPanel">
+    <div id="receipt"></div>
+  </div>
+</div>
+
+<script>
+const linesEl=document.getElementById('lines');
+function addLine(desc="Haircut & styling",qty=1,price=5000){
+  const d=document.createElement('div');d.className='line';
+  d.innerHTML=`<input placeholder="Item/service" value="${desc}">
+    <input type="number" value="${qty}" min="0">
+    <input type="number" value="${price}" min="0">
+    <button title="remove">×</button>`;
+  d.querySelector('button').onclick=()=>{d.remove();render();};
+  d.querySelectorAll('input').forEach(i=>i.addEventListener('input',render));
+  linesEl.appendChild(d);render();
+}
+document.getElementById('add').onclick=()=>addLine("",1,0);
+['biz','bizc','cust','rno','disc','tax','status'].forEach(id=>
+  document.getElementById(id).addEventListener('input',render));
+document.getElementById('status').addEventListener('change',render);
+
+function fmt(n){return '₦'+(Math.round(n)).toLocaleString();}
+function render(){
+  const rows=[...linesEl.children].map(l=>{
+    const [desc,qty,price]=l.querySelectorAll('input');
+    return {d:desc.value,q:+qty.value||0,p:+price.value||0};
+  });
+  let sub=rows.reduce((s,r)=>s+r.q*r.p,0);
+  const disc=+document.getElementById('disc').value||0;
+  const taxpct=+document.getElementById('tax').value||0;
+  const taxed=(sub-disc)*taxpct/100;
+  const total=sub-disc+taxed;
+  const status=document.getElementById('status').value;
+  const cls=status==='PAID'?'paid':(status==='UNPAID'?'unpaid':'paid');
+  const now=new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});
+  document.getElementById('receipt').innerHTML=`
+    <div class="rc-head">
+      <div class="biz">${document.getElementById('biz').value||'Your Business'}</div>
+      <div style="font-size:12px;color:#555">${document.getElementById('bizc').value||''}</div>
+    </div>
+    <div class="rc-row"><span>Receipt #${document.getElementById('rno').value}</span><span>${now}</span></div>
+    <div class="rc-row"><span>Customer</span><span>${document.getElementById('cust').value||'-'}</span></div>
+    <div class="rc-items">
+      ${rows.filter(r=>r.d).map(r=>`<div class="rc-row"><span>${r.q} × ${r.d}</span><span>${fmt(r.q*r.p)}</span></div>`).join('')||'<div class="rc-row"><span>No items</span><span></span></div>'}
+    </div>
+    <div class="rc-row"><span>Subtotal</span><span>${fmt(sub)}</span></div>
+    ${disc?`<div class="rc-row"><span>Discount</span><span>-${fmt(disc)}</span></div>`:''}
+    ${taxpct?`<div class="rc-row"><span>Tax (${taxpct}%)</span><span>${fmt(taxed)}</span></div>`:''}
+    <div class="rc-row rc-total"><span>TOTAL</span><span>${fmt(total)}</span></div>
+    <div class="rc-row" style="margin-top:8px"><span>Status</span><span class="badge ${cls}">${status}</span></div>
+    <div class="rc-foot">Thank you for your patronage 💚<br>Powered by a simple digital receipt system</div>`;
+}
+addLine("Haircut & styling",1,5000);
+addLine("Deep conditioning",1,3500);
+</script>
+</body>
+</html>
