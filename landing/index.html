@@ -99,18 +99,43 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.04;letter-spac
 .btn-ghost:hover{background:var(--glass-2)}
 .btn svg{width:17px;height:17px}
 
-/* ---- hero ---- */
-.hero{padding-top:clamp(84px,13vw,128px);padding-bottom:clamp(24px,5vw,52px)}
-.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:40px;align-items:center}
-@media (max-width:900px){.hero-grid{grid-template-columns:1fr;gap:20px}}
-.hero h1{font-size:clamp(40px,7.2vw,76px);margin:22px 0 0}
+/* ---- hero (cinematic) ---- */
+.hero{position:relative;min-height:90vh;display:flex;align-items:center;overflow:hidden;
+  padding-top:clamp(100px,16vw,150px);padding-bottom:clamp(44px,7vw,80px)}
+.hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+.hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.32;
+  filter:saturate(115%) contrast(106%);
+  -webkit-mask-image:radial-gradient(130% 100% at 72% 42%,#000,transparent 76%);
+  mask-image:radial-gradient(130% 100% at 72% 42%,#000,transparent 76%)}
+.hero-bg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,var(--bg) 6%,rgba(8,11,15,.55) 44%,transparent 74%),linear-gradient(0deg,var(--bg),transparent 42%)}
+.hero-ring{position:absolute;top:44%;right:-6%;transform:translateY(-50%);width:min(66vw,600px);aspect-ratio:1;
+  border-radius:50%;box-shadow:0 0 120px 10px rgba(53,227,161,.20),inset 0 0 140px 30px rgba(24,198,214,.10)}
+.hero-ring::before{content:"";position:absolute;inset:0;border-radius:50%;padding:2.5px;
+  background:conic-gradient(from 0deg,var(--mint),var(--teal),var(--violet),var(--gold),var(--mint));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;
+  filter:drop-shadow(0 0 26px rgba(53,227,161,.55));animation:ringspin 26s linear infinite}
+.hero-ring::after{content:"";position:absolute;inset:15%;border-radius:50%;background:radial-gradient(circle,rgba(24,198,214,.14),transparent 70%)}
+@keyframes ringspin{to{transform:rotate(360deg)}}
+.ember{position:absolute;width:4px;height:4px;border-radius:50%;background:var(--mint);filter:blur(.5px);
+  animation:floatup linear infinite}
+@keyframes floatup{0%{transform:translateY(24px);opacity:0}18%{opacity:.6}100%{transform:translateY(-130px);opacity:0}}
+.hero-inner{position:relative;z-index:2;max-width:680px}
+.hero h1{font-size:clamp(42px,8vw,80px);margin:20px 0 0}
 .hero h1 .g{background:linear-gradient(115deg,var(--mint),var(--teal) 55%,var(--violet));
   -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-style:italic;font-weight:500}
 .word{display:inline-block;will-change:transform,opacity}
-.hero .lede{margin-top:16px}
-.hero-cta{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
-.trustline{margin-top:16px;display:flex;align-items:center;gap:10px;color:var(--faint);font-size:13.5px}
+.hero .lede{margin-top:18px;max-width:52ch}
+.hero-cta{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap}
+.trustline{margin-top:18px;display:flex;align-items:center;gap:10px;color:var(--faint);font-size:13.5px}
 .trustline b{color:var(--muted);font-weight:600}
+.hero-stats{display:flex;flex-wrap:wrap;gap:22px 34px;margin-top:28px;padding-top:22px;border-top:1px solid var(--stroke)}
+.hero-stats>div{display:flex;flex-direction:column;gap:2px}
+.hero-stats b{font-family:var(--display);font-size:clamp(22px,4vw,30px);font-weight:600;
+  background:linear-gradient(135deg,var(--ink),var(--mint));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero-stats span{font-size:12px;color:var(--faint)}
+@media (prefers-reduced-motion:reduce){.hero-ring::before,.ember{animation:none}}
+@media (max-width:760px){.hero-ring{top:6%;right:-34%;width:92vw;opacity:.55;transform:none}.hero-photo{opacity:.24}}
 .pulse{width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 0 rgba(53,227,161,.6);animation:pulse 2.2s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(53,227,161,.55)}70%{box-shadow:0 0 0 12px rgba(53,227,161,0)}100%{box-shadow:0 0 0 0 rgba(53,227,161,0)}}
 
@@ -324,8 +349,13 @@ footer .honesty{font-size:12.5px;color:var(--faint);max-width:52ch}
 </div></nav>
 
 <!-- HERO -->
-<header class="hero wrap" id="top">
-  <div class="hero-grid">
+<header class="hero" id="top">
+  <div class="hero-bg" aria-hidden="true">
+    <img class="hero-photo" alt="" src="https://loremflickr.com/1400/1000/aurora,night,sky?lock=900" onerror="this.remove()">
+    <div class="hero-ring"></div>
+    <div id="embers"></div>
+  </div>
+  <div class="wrap hero-inner">
     <div>
       <span class="eyebrow lockup"><span class="logo-mark"><svg viewBox="0 0 40 40" width="26" height="26" aria-hidden="true"><defs><linearGradient id="bfgh" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#35e3a1"/><stop offset=".55" stop-color="#18c6d6"/><stop offset="1" stop-color="#8b7bf7"/></linearGradient><clipPath id="bfch"><rect x="1" y="1" width="38" height="38" rx="11"/></clipPath></defs><rect x="1" y="1" width="38" height="38" rx="11" fill="url(#bfgh)"/><path class="spark" d="M20 9c1 7 4 10 11 11-7 1-10 4-11 11-1-7-4-10-11-11 7-1 10-4 11-11Z" fill="#05130c"><animateTransform attributeName="transform" type="rotate" values="0 20 20;360 20 20" dur="18s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.8;1;0.8" dur="2.6s" repeatCount="indefinite"/></path><g clip-path="url(#bfch)"><rect class="shine" x="0" y="-2" width="9" height="44" fill="rgba(255,255,255,.4)" transform="skewX(-18)"><animate attributeName="x" values="-14;-14;46;46" keyTimes="0;0.35;0.6;1" dur="3.8s" repeatCount="indefinite"/></rect></g></svg></span>Brightfront · Digital Studio</span>
       <h1 id="headline">
@@ -340,18 +370,12 @@ footer .honesty{font-size:12.5px;color:var(--faint);max-width:52ch}
         </a>
         <a class="btn btn-ghost" href="#work">See live work</a>
       </div>
-      <div class="trustline"><span class="pulse"></span><span><b>Real working demos below</b> — no stock photos, no fake reviews.</span></div>
-    </div>
-
-    <div class="hero-card">
-      <div class="glasscard assess floaty">
-        <div class="cap">Free · No obligation</div>
-        <h3>Business Assessment</h3>
-        <p>Tell us about your business — we spot one clear opportunity, free.</p>
-        <div class="field"><span>Business type</span><b>Restaurant</b></div>
-        <div class="field"><span>Main goal</span><b>More orders</b></div>
-        <div class="field"><span>Biggest time-waster</span><b>DM ordering</b></div>
-        <div class="mockbtn">Recommend a fix →</div>
+      <div class="trustline"><span class="pulse"></span><span><b>Real, working demos below</b> — no fake clients, no fake reviews.</span></div>
+      <div class="hero-stats">
+        <div><b>7</b><span>Services</span></div>
+        <div><b>₦30k+</b><span>Starting price</span></div>
+        <div><b>3–5</b><span>Day delivery</span></div>
+        <div><b>50%</b><span>Deposit to start</span></div>
       </div>
     </div>
   </div>
@@ -623,6 +647,13 @@ footer .honesty{font-size:12.5px;color:var(--faint);max-width:52ch}
   function onScroll(){ nav.classList.toggle("scrolled", window.scrollY > 20); }
   onScroll(); window.addEventListener("scroll", onScroll, {passive:true});
 
+  /* hero embers */
+  (function(){var box=document.getElementById("embers");if(!box||reduce)return;
+   for(var i=0;i<14;i++){var e=document.createElement("span");e.className="ember";
+    e.style.left=(Math.random()*100)+"%";e.style.bottom=(Math.random()*55)+"%";
+    e.style.animationDuration=(4+Math.random()*6)+"s";e.style.animationDelay=(Math.random()*6)+"s";
+    e.style.opacity=(0.2+Math.random()*0.4);box.appendChild(e);}})();
+
   /* ---------- motion (GSAP + Lenis), all optional ---------- */
   if(reduce || !window.gsap){ return; }
   document.documentElement.classList.add("js");
@@ -652,7 +683,7 @@ footer .honesty{font-size:12.5px;color:var(--faint);max-width:52ch}
     .from(".hero .lede", { y:20, opacity:0, duration:.6 }, "-=.5")
     .from(".hero-cta", { y:20, opacity:0, duration:.6 }, "-=.4")
     .from(".hero .trustline", { y:16, opacity:0, duration:.5 }, "-=.4")
-    .from(".hero .glasscard", { y:40, opacity:0, scale:.96, duration:.9 }, "-=.9");
+    .from(".hero-stats", { y:20, opacity:0, duration:.6 }, "-=.3");
 
   /* generic scroll reveals */
   gsap.utils.toArray(".reveal").forEach(function(el){
