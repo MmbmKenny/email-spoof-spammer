@@ -24,17 +24,17 @@ a free tier runs out, update this file the same day.
 ## Available in this environment (verify before promising to a client)
 
 These MCP integrations are connected to this workspace. **They are internal
-production tools — do not tell a client "we have X integration" unless we have
+production tools, do not tell a client "we have X integration" unless we have
 actually used it for their project and verified it works.**
 
 | Integration | Potential use | Verified working? |
 |-------------|---------------|-------------------|
-| Gmail | Draft/send outreach & client email | Connected — needs a real send test before relying on it |
-| Canva | Social content, ad creative, brand assets | Connected — not yet used |
-| Gamma | Proposal decks, service one-pagers | Connected — not yet used |
-| Shopify | Ecommerce client stores, product catalogs | Connected — not yet used |
+| Gmail | Draft/send outreach & client email | Connected, needs a real send test before relying on it |
+| Canva | Social content, ad creative, brand assets | Connected, not yet used |
+| Gamma | Proposal decks, service one-pagers | Connected, not yet used |
+| Shopify | Ecommerce client stores, product catalogs | Connected, not yet used |
 | GitHub | Hosting, code delivery | Connected & in use |
-| Claude Docs | Shared proposals/notes | Connected — not yet used |
+| Claude Docs | Shared proposals/notes | Connected, not yet used |
 
 > Honesty rule: the "Verified working?" column must reflect reality. Never move
 > a row to "verified" until we've actually completed a real task with it.
@@ -43,7 +43,7 @@ actually used it for their project and verified it works.**
 
 | Tool | Why we'd want it | Cost | Decision |
 |------|------------------|------|----------|
-| Custom domain (agency) | Professional email + landing page URL | ~₦10,000–15,000/yr (.com.ng / .com) | Optional. Not required to get first clients — use a free subdomain first. |
+| Custom domain (agency) | Professional email + landing page URL | ~₦10,000–15,000/yr (.com.ng / .com) | Optional. Not required to get first clients, use a free subdomain first. |
 | Paid email sender (SendGrid/Brevo) | Bulk transactional email | Free tier exists; paid above limits | NOT needed. We do manual, personalized outreach, not bulk sends. |
 | Paid hosting (VPS) | Dynamic apps / databases | ~₦5,000+/mo | Only if a client project needs a backend. Quote it into that project. |
 

@@ -1,4 +1,4 @@
-# Sales Funnel — Stage Definitions
+# Sales Funnel, Stage Definitions
 
 These are the exact stage values used by the CRM (`sales/crm.py`). A lead moves
 forward only when the real-world event has actually happened.

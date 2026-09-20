@@ -15,13 +15,13 @@ Prepared by: [Your name] · [Date]
 - {{Deliverable 3}}
 
 **What it will do for you**
-{{The outcome — more customers / easier ordering / less manual work.}}
+{{The outcome, more customers / easier ordering / less manual work.}}
 
 **Timeline**
 {{X}} days from deposit + your content.
 
 **Investment**
-₦{{amount}} — {{50% deposit to start, 50% on delivery}}.
+₦{{amount}}, {{50% deposit to start, 50% on delivery}}.
 Includes one round of revisions.
 
 **Next step**

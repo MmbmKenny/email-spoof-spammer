@@ -24,7 +24,7 @@ free accounts, then run the checklists in the linked docs.
 | 7 | Custom domain | ❌ NOT VERIFIED | No domain owned. |
 | 8 | Rollback capability | ❌ NOT VERIFIED | Native to Pages; untested until deployed. |
 
-## Email (Zoho — receiving + replies)
+## Email (Zoho, receiving + replies)
 
 | # | Item | Status | Notes |
 |---|------|--------|-------|
@@ -36,7 +36,7 @@ free accounts, then run the checklists in the linked docs.
 | 14 | Mailbox receiving (`hello@DOMAIN`) | ❌ NOT VERIFIED | Test: send from Gmail, confirm arrival. |
 | 15 | Reply passes SPF+DKIM | ❌ NOT VERIFIED | Check "Show original" in Gmail. |
 
-## Outbound (Brevo — approved outreach)
+## Outbound (Brevo, approved outreach)
 
 | # | Item | Status | Notes |
 |---|------|--------|-------|

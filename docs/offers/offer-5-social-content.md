@@ -17,5 +17,5 @@ This gives you a month of content so you just post and go.
 
 **How much does it cost?** ₦15,000–₦30,000+ depending on volume and platforms.
 
-**How do I start?** Tell us your business and your best-selling items — we'll do
+**How do I start?** Tell us your business and your best-selling items, we'll do
 the rest.

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Lumo Store — Catalog (DEMO)</title>
+<title>Lumo Store, Catalog (DEMO)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap">
@@ -47,7 +47,7 @@ footer b{color:var(--violet)}
 </style>
 </head>
 <body>
-<div class="demoflag">✦ DEMO STORE — “Lumo” is a fictional business, built to show what Brightfront delivers</div>
+<div class="demoflag">✦ DEMO STORE, “Lumo” is a fictional business, built to show what Brightfront delivers</div>
 
 <header class="top"><div class="wrap">
   <div class="eyebrow">Gadgets &amp; Accessories</div>
@@ -66,8 +66,8 @@ footer b{color:var(--violet)}
 <div class="wrap"><div class="grid" id="grid"></div></div>
 
 <footer><div class="wrap">
-  <p><b>Lumo Store</b> — browse &amp; order on WhatsApp.</p>
-  <p style="margin-top:6px">DEMO catalog by Brightfront — <a href="../index.html" style="color:var(--violet)">see more work</a></p>
+  <p><b>Lumo Store</b>, browse &amp; order on WhatsApp.</p>
+  <p style="margin-top:6px">DEMO catalog by Brightfront, <a href="../index.html" style="color:var(--violet)">see more work</a></p>
 </div></footer>
 
 <script>
@@ -99,7 +99,7 @@ function render(){
  if(sort==='feat')list.sort(function(a,b){return (b.feat||0)-(a.feat||0)});
  var g=document.getElementById('grid');
  g.innerHTML=list.length?list.map(function(p){
-   var msg=encodeURIComponent("Hi Lumo Store, I'd like to order: "+p.n+" — "+fmt(p.p));
+   var msg=encodeURIComponent("Hi Lumo Store, I'd like to order: "+p.n+", "+fmt(p.p));
    return '<div class="p"><div class="img"><span class="ph">'+p.e+'</span>'
      +'<img loading="lazy" alt="'+p.n+'" src="https://loremflickr.com/400/400/'+p.kw+'?lock='+p.l+'" onerror="this.remove()"></div>'
      +'<div class="b"><h3>'+p.n+'</h3><small>'+p.c+'</small><div class="price">'+fmt(p.p)+'</div>'

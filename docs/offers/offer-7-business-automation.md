@@ -19,7 +19,7 @@ hours you could spend growing. We automate the boring parts.
 **How long does it take?** Varies by complexity.
 
 **How much does it cost?** Quoted by complexity. We won't underquote a complex
-build just to close — we'll scope it honestly.
+build just to close, we'll scope it honestly.
 
 **How do I start?** Tell us the task that eats the most of your time. We'll see
 what's automatable.

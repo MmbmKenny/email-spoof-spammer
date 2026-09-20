@@ -7,7 +7,7 @@ Ask once they're interested. Keep it a conversation, not an interrogation.
 3. What do you sell most / want to sell more of?
 4. Do you have product photos and prices ready, or should we sort that?
 5. Do you have a logo / brand colors?
-6. Where should orders/enquiries land — WhatsApp, email, a form?
+6. Where should orders/enquiries land, WhatsApp, email, a form?
 7. What does "this worked" look like for you in a month?
 8. Any deadline (event, launch, season)?
 9. What's your rough budget range? (So we scope it right.)

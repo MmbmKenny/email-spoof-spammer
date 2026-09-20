@@ -1,4 +1,4 @@
-# Digital Services Agency — Client Acquisition System
+# Digital Services Agency, Client Acquisition System
 
 A practical, zero-capital system for landing the first paying clients of a small
 digital-services business (websites, catalogs, WhatsApp ordering, receipts,
@@ -13,8 +13,8 @@ before any outreach is sent**.
 | Path | What it is |
 |------|------------|
 | `landing/index.html` | The agency landing page (fill in your contact details) |
-| `demos/` | Live demo builds — your portfolio proof (all labelled DEMO) |
-| `sales/crm.py` | SQLite-backed CRM CLI — track prospects with real data only |
+| `demos/` | Live demo builds, your portfolio proof (all labelled DEMO) |
+| `sales/crm.py` | SQLite-backed CRM CLI, track prospects with real data only |
 | `sales/dashboard.py` | Generates a sales dashboard from real CRM data |
 | `docs/offers/` | Client-facing one-pager per service |
 | `docs/outreach/` | Personalized message templates + objection handling |
@@ -68,7 +68,7 @@ Deploy `landing/` and `demos/` free on GitHub Pages or Netlify.
 
 ## Note on this repository's history
 
-This repo was previously an "email spoof spammer". That has nothing to do with —
-and directly contradicts — this legitimate, consent-based business. The old
+This repo was previously an "email spoof spammer". That has nothing to do with , 
+and directly contradicts, this legitimate, consent-based business. The old
 `main.py` spam script has been removed. Consider renaming the repository itself
 away from `email-spoof-spammer` to match the real business.

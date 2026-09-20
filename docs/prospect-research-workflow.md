@@ -10,7 +10,7 @@ we can genuinely solve. No random spraying.
 - Google Search: "<business type> <city>" and see who has a bad/no website.
 - Local directories, WhatsApp catalogs shared in status/groups.
 
-## Qualify — a prospect needs a REAL reason to buy
+## Qualify, a prospect needs a REAL reason to buy
 Prioritize businesses showing at least one of these observable signs:
 1. Active social presence (they care about their business online).
 2. No website, or an outdated/broken/slow one.
@@ -23,7 +23,7 @@ Prioritize businesses showing at least one of these observable signs:
 If you can't name a specific problem, it's not a prospect yet. Skip it.
 
 ## Capture (one row per prospect in the CRM)
-For each, record — using only what you actually observed:
+For each, record, using only what you actually observed:
 - business name, industry, location
 - website (or "none"), social handles
 - contact method (WhatsApp / IG DM / email / form)
@@ -44,13 +44,13 @@ python3 sales/crm.py add \
   --channel instagram
 ```
 
-## Personalization engine — the rule
+## Personalization engine, the rule
 Never send "Hello sir/madam, I offer website services." Lead with ONE thing you
 actually saw:
 
 > "I noticed customers have to DM your page to ask which items are in stock. I
 > put together a simple mobile catalog where they can browse everything and send
-> the order straight to your WhatsApp — want me to show you a quick demo?"
+> the order straight to your WhatsApp, want me to show you a quick demo?"
 
 Every personalized line must trace back to a real observation. If you didn't
 see it, don't say it.

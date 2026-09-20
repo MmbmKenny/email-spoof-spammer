@@ -1,7 +1,7 @@
 # Digital Receipt / Invoice System
 
 **What is it?** A tool that generates clean, branded receipts and invoices in
-seconds — printable and shareable as PDF.
+seconds, printable and shareable as PDF.
 
 **Who is it for?** Hotels, restaurants, salons, shops, and service businesses
 still writing receipts by hand or using nothing at all.

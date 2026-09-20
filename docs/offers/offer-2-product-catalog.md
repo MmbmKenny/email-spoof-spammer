@@ -1,7 +1,7 @@
 # Online Product Catalog
 
 **What is it?** A mobile-friendly catalog of your products that customers can
-browse, search, and order from — no more sending photos one by one.
+browse, search, and order from, no more sending photos one by one.
 
 **Who is it for?** Businesses selling physical products: boutiques, thrift
 stores, electronics, cosmetics, food sellers, home goods.

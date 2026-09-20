@@ -12,7 +12,7 @@ Subject lines (pick one, keep it specific and low-key):
 > problem}}.
 >
 > I build simple, mobile-friendly {{websites / catalogs / ordering tools}} for
-> small businesses — the kind of thing that helps customers find you and order
+> small businesses, the kind of thing that helps customers find you and order
 > without the back-and-forth.
 >
 > I made a short demo you can look at here: [DEMO LINK]. If it's useful, I'd be

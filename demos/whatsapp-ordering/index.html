@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Mama's Kitchen — Ordering (DEMO)</title>
+<title>Mama's Kitchen, Ordering (DEMO)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap">
@@ -48,7 +48,7 @@ footer b{color:var(--lime)}
 </style>
 </head>
 <body>
-<div class="demoflag">✦ DEMO — “Mama's Kitchen” is a fictional business, built to show what Brightfront delivers</div>
+<div class="demoflag">✦ DEMO, “Mama's Kitchen” is a fictional business, built to show what Brightfront delivers</div>
 
 <header class="top"><div class="wrap">
   <div class="badge">Order on WhatsApp</div>
@@ -66,10 +66,10 @@ footer b{color:var(--lime)}
     <label>Note (optional)</label><textarea id="cnote" rows="2" placeholder="Less pepper, extra plantain…"></textarea>
   </div>
   <button class="send" id="send" disabled>Add items to your order</button>
-  <div class="note">Opens WhatsApp with your order ready — nothing sends until you tap send in WhatsApp.</div>
+  <div class="note">Opens WhatsApp with your order ready, nothing sends until you tap send in WhatsApp.</div>
 </div>
 
-<footer>DEMO ordering flow by Brightfront — <a href="../index.html" style="color:var(--lime)">see more work</a></footer>
+<footer>DEMO ordering flow by Brightfront, <a href="../index.html" style="color:var(--lime)">see more work</a></footer>
 
 <script>
 var WA="0000000000";
@@ -106,8 +106,8 @@ menuEl.addEventListener('click',function(e){var b=e.target.closest('button[data-
  var k=b.dataset.k;cart[k].q=Math.max(0,cart[k].q+(+b.dataset.d));document.getElementById('q-'+k).textContent=cart[k].q;refresh();});
 document.getElementById('send').addEventListener('click',function(){
  var name=document.getElementById('cname').value.trim(),addr=document.getElementById('caddr').value.trim(),note=document.getElementById('cnote').value.trim();
- var lines=["*New order — Mama's Kitchen*",""],t=0;
- for(var k in cart){if(cart[k].q>0){var s=cart[k].p*cart[k].q;t+=s;lines.push("• "+cart[k].q+" x "+cart[k].n+" — "+fmt(s));}}
+ var lines=["*New order, Mama's Kitchen*",""],t=0;
+ for(var k in cart){if(cart[k].q>0){var s=cart[k].p*cart[k].q;t+=s;lines.push("• "+cart[k].q+" x "+cart[k].n+", "+fmt(s));}}
  lines.push("","*Total: "+fmt(t)+"*");
  if(name)lines.push("Name: "+name);if(addr)lines.push("Address/Pickup: "+addr);if(note)lines.push("Note: "+note);
  window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(lines.join("\n")),"_blank");

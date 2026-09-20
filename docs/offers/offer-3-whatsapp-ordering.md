@@ -6,7 +6,7 @@ to-send WhatsApp order to you.
 
 **Who is it for?** Instagram/TikTok/Facebook sellers who take orders in the DMs.
 
-**What problem does it solve?** DM ordering is slow and error-prone — missed
+**What problem does it solve?** DM ordering is slow and error-prone, missed
 messages, wrong quantities, lost orders. This makes ordering one tap and gives
 you a clean order summary every time.
 

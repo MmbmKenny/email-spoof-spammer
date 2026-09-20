@@ -1,4 +1,4 @@
-# Outbound Email — Brevo (free) for authenticated outreach
+# Outbound Email, Brevo (free) for authenticated outreach
 
 _Last researched: 2026-09-19. Confirm Brevo's current limits and include strings
 in the Brevo console before relying on them._
@@ -37,25 +37,25 @@ in the Brevo console before relying on them._
 ## Domain authentication in Brevo
 1. Brevo → **Senders, Domains & Dedicated IPs → Domains → Add a domain** → `DOMAIN`.
 2. Brevo shows records to add to DOMAIN's DNS:
-   - A **DKIM** record (Brevo's `brevo._domainkey` / `mail._domainkey` selector — use the exact host/value Brevo gives).
-   - An SPF **include** — add `include:spf.brevo.com` to your **existing single**
+   - A **DKIM** record (Brevo's `brevo._domainkey` / `mail._domainkey` selector, use the exact host/value Brevo gives).
+   - An SPF **include**, add `include:spf.brevo.com` to your **existing single**
      SPF record (see `email-setup.md`): `v=spf1 include:zoho.com include:spf.brevo.com ~all`.
    - A **Brevo verification** record (`brevo-code` TXT) if requested.
-3. Add a **DMARC** record if not already present (shared with Zoho — one record):
+3. Add a **DMARC** record if not already present (shared with Zoho, one record):
    `v=DMARC1; p=none; rua=mailto:hello@DOMAIN; ...` (tighten to quarantine/reject later).
 4. Click **Authenticate/Verify** in Brevo and wait for all records to go green.
 5. Add and **verify the sender** `hello@DOMAIN` in Brevo.
 
 ## Deliverability discipline (this is what actually gets you into inboxes)
 
-- **SPF / DKIM / DMARC** all passing — necessary baseline, not sufficient.
+- **SPF / DKIM / DMARC** all passing, necessary baseline, not sufficient.
 - **Sender reputation** builds slowly on a new domain. **Warm up gradually**:
   start ~10–20 emails/day, increase only if opens are healthy and bounces/
   complaints are near zero. Do **not** blast 300 on day one.
 - **Bounce rate:** keep well under ~2–3%. Verify addresses before sending;
   remove hard bounces immediately.
 - **Spam complaints:** keep under ~0.1%. One easy way to get complaints is
-  emailing people who never asked — so target only genuinely relevant businesses
+  emailing people who never asked, so target only genuinely relevant businesses
   with a real, personalized reason (see the CRM + research workflow).
 - **Unsubscribe handling:** every campaign email must include a working
   unsubscribe link (Brevo adds one; keep it). Honor opt-outs immediately and set
@@ -72,7 +72,7 @@ in the Brevo console before relying on them._
   out. Re-confirm your obligations under Nigerian/EU rules for the audiences you
   actually contact.
 
-## HARD RULE — human approval before sending
+## HARD RULE, human approval before sending
 This project **must not** auto-send unsolicited email at volume. The workflow is:
 1. Agent **researches** prospects and logs them in the CRM.
 2. Agent **drafts** a personalized email + follow-ups (as Gmail/Brevo **drafts**).

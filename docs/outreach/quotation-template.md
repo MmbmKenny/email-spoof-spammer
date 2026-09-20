@@ -1,7 +1,7 @@
 # Quotation Template
 
 ---
-**Quotation — {{Business Name}}**
+**Quotation, {{Business Name}}**
 Date: [Date] · Valid for: 14 days
 
 | Item | Description | Price (₦) |

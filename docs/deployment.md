@@ -1,15 +1,15 @@
-# Deployment — Cloudflare Pages (free)
+# Deployment, Cloudflare Pages (free)
 
-_Last researched: 2026-09-19. Free-tier details change — re-check the linked
+_Last researched: 2026-09-19. Free-tier details change, re-check the linked
 official docs before relying on any number._
 
 Throughout, `DOMAIN` is a placeholder for the domain you will eventually own
-(e.g. `brightfront.ng`). **Do not purchase anything to follow this doc** — every
+(e.g. `brightfront.ng`). **Do not purchase anything to follow this doc**, every
 step up to "custom domain" works on the free `*.pages.dev` subdomain.
 
 ## 0. Project compatibility (verified locally)
 
-This project is a **pure static site** — no framework, no build dependencies.
+This project is a **pure static site**, no framework, no build dependencies.
 Confirmed: no `package.json`, `requirements.txt`, `wrangler.toml`, or any bundler
 config. The Python files in `sales/` are the **internal CRM tools and are NOT
 part of the deployed website.**
@@ -28,7 +28,7 @@ bash build.sh
 # then open public/index.html
 ```
 
-## 1. Cloudflare Pages — settings
+## 1. Cloudflare Pages, settings
 
 Create a free Cloudflare account, then **Workers & Pages → Create → Pages →
 Connect to Git**, authorize GitHub, and pick this repository.
@@ -64,7 +64,7 @@ _(Only when you own `DOMAIN`. You do not need this to go live on `*.pages.dev`.)
 
 1. Cloudflare dashboard → your Pages project → **Custom domains → Set up a domain**.
 2. Enter `DOMAIN` (and/or `www.DOMAIN`).
-3. **If DOMAIN's DNS is on Cloudflare** (recommended — free): activation is
+3. **If DOMAIN's DNS is on Cloudflare** (recommended, free): activation is
    near-instant; Cloudflare adds the record and provisions the SSL certificate
    automatically.
 4. **If DOMAIN stays at another registrar**: add the `CNAME` record Cloudflare
